@@ -11,15 +11,15 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 
 	var cwd = (_.isUndefined(options.cwd) || _.isNull(options.cwd) ? path.dirname(src) : options.cwd);
 
-	console.dir(options);
+	//console.dir(options);
 
 	var useArgs = options.args;
-	if (options.help) {
+	/*if (options.help) {
 		//override
 		useArgs = {
 			help: true
 		};
-	}
+	}*/
 
 	// apply defaults
 	var argHash = _.defaults({
@@ -37,8 +37,8 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 		}
 	}
 	else {
-		// do not force it, will mess with -h options etc
-		//tasks = ['default'];
+		// do NOT force default: it will mess with -h options
+		// tasks = ['default'];
 	}
 
 	// serialise named args
@@ -54,14 +54,15 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 			}
 		}
 	});
+
+	console.dir(argArr);
+
 	// append task names
 	_.each(taskList, function (task) {
 		argArr.push(task);
 	});
 
-	// for debugging
-
-	// print repeatable
+	// for debugging print repeatable cli commands
 	if (options.debugCli) {
 
 		grunt.log.writeln([
@@ -82,6 +83,8 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 		options: options,
 		res: null
 	};
+
+	console.dir(argArr);
 
 	if (options.writeShell) {
 		var dir = options.writeShell;

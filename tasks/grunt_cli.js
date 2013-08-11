@@ -36,8 +36,8 @@ var passOptions = {
 
 module.exports = function (grunt) {
 
+	var runGruntfile = require('./lib/run').runGruntfile;
 	var _ = grunt.util._;
-	var runGruntfile = require('./lib/runGruntfile').runGruntfile;
 
 	grunt.registerMultiTask('grunt_cli', 'Run grunt-cli from within grunt.', function () {
 		var options = this.options(_.defaults({
