@@ -1,0 +1,10 @@
+/node_modules
+npm-debug.log
+
+/*.tgz
+/.idea
+/.vagrant
+/tmp
+
+/test/tmp
+/test/shell
