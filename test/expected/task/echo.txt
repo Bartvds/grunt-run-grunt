@@ -1,1 +1,6 @@
 Running "echo:echo" (echo) task
+echo
+echo task: echo:echo
+>> done
+
+Done, without errors.

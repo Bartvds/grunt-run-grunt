@@ -33,17 +33,17 @@ module.exports = function (grunt) {
 		// dogfooding
 		run_grunt: {
 			options: {
-
+				concurrent: 2
 			},
 			all_tests: {
 				src: ['test/Gruntfile*.js'],
 				options: {
-					debugCli: true,
-					//writeShell: 'test/shell/',
+					// debugCli: true,
+					// writeShell: 'test/shell/',
 					stack: true,
 
-					//update this
-					minimumFiles: 6
+					//keep this updated
+					minimumFiles: 7
 				}
 			},
 			task: {

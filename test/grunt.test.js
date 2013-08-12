@@ -1,6 +1,7 @@
 'use strict';
 
 var grunt = require('grunt');
+var helper = require('./helper');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -32,8 +33,8 @@ function fileEqual(test, actualName, expectedName, normalised) {
 	var actual = grunt.file.read('test/tmp/' + actualName);
 	var expected = grunt.file.read('test/expected/' + expectedName);
 	if (normalised) {
-		actual = grunt.util.normalizelf(actual);
-		expected = grunt.util.normalizelf(expected);
+		actual = helper.toUnixNewline(actual);
+		expected = helper.toUnixNewline(expected);
 	}
 	test.ok(actual, 'actual should be ok: ' + actualName);
 	test.ok(expected, 'expected should be ok: ' + expectedName);
@@ -43,7 +44,7 @@ function fileEqual(test, actualName, expectedName, normalised) {
 function testFileEqual(tests, label, actualName, expectedName) {
 	tests[label] = function (test) {
 		test.expect(3);
-		fileEqual(test, actualName, expectedName);
+		fileEqual(test, actualName, expectedName, true);
 		test.done();
 	};
 }

@@ -20,7 +20,6 @@ module.exports = function (grunt) {
 						console.dir(result);
 
 						helper.assertResult('run_grunt:result', result, function (ctx) {
-							console.dir(ctx);
 							grunt.log.writeln(ctx.log);
 
 							if (ctx.fail){

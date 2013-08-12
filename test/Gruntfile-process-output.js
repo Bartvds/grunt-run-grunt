@@ -1,7 +1,7 @@
 'use strict';
 
-// var helper = require('./helper');
- var path = require('path');
+var helper = require('./helper');
+var path = require('path');
 
 module.exports = function (grunt) {
 
@@ -19,7 +19,10 @@ module.exports = function (grunt) {
 					log: true,
 					'no-color': true,
 					process: function (result) {
-						result.output = '[output replaced]';
+						helper.assertResult('run_grunt:result', result, function (ctx) {
+							result.output = '[output replaced]';
+							ctx.assertion();
+						});
 					}
 				},
 				src: ['Gruntfile-dummy.js']

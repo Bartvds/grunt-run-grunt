@@ -31,6 +31,7 @@ var baseOptions = {
 	cwd: null,
 	log: true,
 	logFile: null,
+	//noAnsi: true,
 	debugCli: false,
 	writeShell: null,
 	indentLog: conf.indentLog,

@@ -11,13 +11,28 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 
 	var cwd = (_.isUndefined(options.cwd) || _.isNull(options.cwd) ? path.dirname(src) : options.cwd);
 
+	//return value
+	var result = {
+		error: null,
+		res: null,
+		code: '',
+
+		fail: false,
+		output: '',
+
+		src: '',
+		cwd: '',
+
+		tasks: taskList,
+		options: options,
+
+		// timing
+		start: Date.now(),
+		end: Date.now(),
+		duration: 0
+	};
+
 	var useArgs = options.args;
-	/*if (options.help) {
-		//override
-		useArgs = {
-			help: true
-		};
-	}*/
 
 	// apply defaults
 	var argHash = _.defaults({
@@ -68,27 +83,6 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 
 		grunt.log.writeln('');
 	}
-
-	//return value
-	var result = {
-		error: null,
-		res: null,
-		code: '',
-
-		fail: false,
-		output: '',
-
-		src: src,
-		cwd: cwd,
-
-		tasks: taskList,
-		options: options,
-
-		// timing
-		start: Date.now(),
-		end: Date.now(),
-		duration: 0
-	};
 
 	// experimental
 	if (options.writeShell) {
@@ -193,7 +187,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 					grunt.log.writeln(result.output);
 				}
 			}
-			// write log
+			// file the log
 			if (options.logFile) {
 				var tmp = options.logFile;
 				if (grunt.file.isDir(tmp)) {

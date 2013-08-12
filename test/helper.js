@@ -1,4 +1,3 @@
-
 var miniSuite = require('./lib/miniSuite');
 
 var assertResult = miniSuite.getSuite('assertResult', {
@@ -27,7 +26,15 @@ var assertResult = miniSuite.getSuite('assertResult', {
 	}
 });
 
+function toUnixNewline(str) {
+	return str.replace(/\r\n|\r/g, "\n");
+}
+function toWindowNewLine(str) {
+	return str.replace(/\r\n|\r|\n/g, "\r\n");
+}
 
 module.exports = {
+	toWindowNewLine: toWindowNewLine,
+	toUnixNewline: toUnixNewline,
 	assertResult: assertResult
 };
