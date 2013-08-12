@@ -60,18 +60,16 @@ grunt.initConfig({
 
 #### grunt-cli options 
 
-Snake_cased instead of default-dashes.
- 
 ```
 help: boolean,
 base: 'string',
-no_color: boolean,
+'no-color': boolean,
 debug: boolean,
 stack: boolean,
 force: boolean,
 tasks: boolean,
 npm: 'string',
-no_write: boolean,
+'no-write': boolean,
 verbose: boolean,
 version: boolean
 ```
