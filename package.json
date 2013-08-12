@@ -44,7 +44,7 @@
   },
   "peerDependencies": {
     "grunt": "0.4.1"
-  }
+  },
   "dependencies": {
     "chai": "~1.7.2"
   }
