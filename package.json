@@ -1,11 +1,10 @@
 {
-  "name": "grunt-grunt-cli",
-  "description": "Grunt task to run grunt-cli as child process.",
-  "version": "0.0.1",
+  "name": "grunt-run-grunt",
+  "description": "Grunt task to run grunt as child process.",
+  "version": "0.0.2",
   "homepage": "https://github.com/Bartvds/grunt-grunt-cli",
   "author": {
     "name": "Bart van der Schoor",
-    "email": "bartvanderschoor@gmail.com",
     "url": "https://github.com/Bartvds"
   },
   "repository": {
@@ -33,12 +32,15 @@
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
     "jshint-path-reporter": "~0.1",
-    "grunt": "~0.4.1"
+    "grunt": "0.4.1"
   },
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "0.4.1"
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "chai": "~1.7.2"
+  }
 }

@@ -1,7 +1,7 @@
 function runGruntfile(grunt, src, tasks, options, callback) {
-	var start = Date.now();
 
 	var path = require('path');
+	var conf = require('./conf');
 	//var os = require('os');
 	//var assert = require('assert');
 	var _ = grunt.util._;
@@ -10,8 +10,6 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 	var taskList = [];
 
 	var cwd = (_.isUndefined(options.cwd) || _.isNull(options.cwd) ? path.dirname(src) : options.cwd);
-
-	//console.dir(options);
 
 	var useArgs = options.args;
 	/*if (options.help) {
@@ -27,7 +25,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 	}, useArgs);
 
 	if (tasks) {
-		if (!_.isArray(tasks)) {
+		if (_.isArray(tasks)) {
 			_.forEach(tasks, function (target) {
 				taskList.push(target);
 			});
@@ -37,7 +35,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 		}
 	}
 	else {
-		// do NOT force default: it will mess with -h options
+		// do NOT force default
 		// tasks = ['default'];
 	}
 
@@ -55,8 +53,6 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 		}
 	});
 
-	console.dir(argArr);
-
 	// append task names
 	_.each(taskList, function (task) {
 		argArr.push(task);
@@ -64,7 +60,6 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 
 	// for debugging print repeatable cli commands
 	if (options.debugCli) {
-
 		grunt.log.writeln([
 			'cd ' + path.resolve(cwd),
 			'grunt ' + argArr.join(' '),
@@ -76,15 +71,16 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 
 	//return value
 	var result = {
+		start: Date.now(),
 		cwd: cwd,
 		src: src,
+		res: null,
+		fail: false,
 		output: '',
+		mixiedStdIO: mixiedStdIO,
 		tasks: taskList,
-		options: options,
-		res: null
+		options: options
 	};
-
-	console.dir(argArr);
 
 	if (options.writeShell) {
 		var dir = options.writeShell;
@@ -92,7 +88,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 			dir = path.dirname(options.writeShell);
 		}
 
-		var gf = path.basename(src, path.extname(src).toLowerCase());
+		var gf = path.basename(src.toLowerCase(), path.extname(src));
 		var base = path.join(dir, options.target + '__' + gf);
 
 		var shPath = base + '.sh';
@@ -105,12 +101,14 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 		].join('\n');
 		grunt.file.write(shPath, shContent);
 
-		//TODO chmod the shellscript?
+		//TODO chmod the shell-script?
 
 		var batPath = base + '.bat';
 		var batContent = [
+			'set PWD=%~dp0',
 			'cd ' + path.resolve(cwd),
 			'grunt ' + argArr.join(' '),
+			'cd "%PWD%"',
 			''
 		].join('\r\n');
 		grunt.file.write(batPath, batContent);
@@ -125,18 +123,18 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 		}
 	};
 
-	console.dir(param);
-
+	// make a child
 	var child = grunt.util.spawn(param,
 		function (err, res, code) {
-			grunt.log.writeln('-> '.cyan + 'reporting ' + src);
+			grunt.log.writeln(conf.nub + 'reporting' + ' "' + src + '"');
 
 			// *everything*
 			result.error = err;
 			result.res = res;
 			result.code = code;
-			result.mixiedStdIO = mixiedStdIO.join('');
-			result.duration = (Date.now() - start);
+			result.output = mixiedStdIO.join('');
+			result.end = Date.now();
+			result.duration = (result.end - result.start);
 
 			// basic check
 			if (err || code !== 0) {
@@ -162,28 +160,33 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 
 					var label = 'grunt_cli(' + [tasks].join(' / ') + ')';
 
-					grunt.log.writeln('-> ' + ('grunt process fail').red + ' for ' + label);
+					grunt.log.writeln(conf.nub + ('grunt process forced failure').yellow + ' for ' + label);
 
 					if (ret !== false) {
 						// only log if not a boolean
-						grunt.log.writeln('-> ' + ret);
+						grunt.log.writeln(conf.nub + ret);
 					}
 				}
 			}
 
 			// log the log
-			if (options.log) {
-				grunt.log.writeln(result.mixiedStdIO);
+			if (options.log && mixiedStdIO.length > 0) {
+
+				if (_.isString(options.indentLog) && options.indentLog !== '') {
+					//TODO optimise this
+					grunt.log.writeln(options.indentLog + result.output.split(/\r\n|\r|\n/g).join('\n' + options.indentLog));
+				}
+				else {
+					grunt.log.writeln(result.output);
+				}
 			}
 			if (options.logFile) {
 				var tmp = options.logFile;
-				if (path.dirname(tmp)) {
-					tmp = path.join(tmp, 'grunt-log.txt');
+				if (grunt.file.isDir(tmp)) {
+					tmp = path.join(tmp, 'run-grunt-log.txt');
 				}
-				grunt.log.writeln('-> '.cyan + 'saving data to ' + tmp);
-				grunt.file.write(tmp, result.mixiedStdIO);
-
-				result.logFile = tmp;
+				grunt.log.writeln(conf.nub + 'saving data' + ' to "' + tmp + '"');
+				grunt.file.write(tmp, result.output);
 			}
 
 			// bye

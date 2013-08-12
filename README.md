@@ -1,6 +1,6 @@
-# grunt-run-grunt-cli
+# grunt-run-grunt
 
-> Grunt task to run grunt-cli as child process
+> Grunt task to run grunt as child process.
 
 :warning: The project is pre-alpha.
 
@@ -10,32 +10,32 @@ This plugin requires Grunt `~0.4.1`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-run-grunt-cli --save-dev
+npm install grunt-run-grunt --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-run-grunt-cli');
+grunt.loadNpmTasks('grunt-run-grunt');
 ```
 
-## The "grunt_cli" task
+## The "run_grunt" task
 
-> *"Yo dawg, I herd you like grunt, so I put some grunt in your grunt so you can grunt while you grunt."*
+> *"Yo dawg, I heard you like grunt, so I put some grunt in your grunt so you can grunt while you grunt."*
 
-Use the `run_grunt_cli` task to spawn new processes that run `grunt-cli` as command and optionally work on the various result data. It will use the global `$ grunt` command.
+Use the `run_grunt` task to spawn new processes that run `grunt-cli` and optionally work on the various result data. It will use the global `$ grunt` command.
 
-Main use-case is testing your gruntfile or grunt-plugins, butis also suited for creative use of gruntfiles and grunt-cli output.
+Main use-case is testing your gruntfile or grunt-plugins, but it is also suited for creative use of gruntfiles and grunt-cli output.
 
 If you need something like this to run grunt in a production build environment or don't care about the content of the cli output then you are probably looking for [grunt-hub](https://github.com/shama/grunt-hub).
 
 ### Options
 
-In your project's Gruntfile, add a section named `grunt_cli` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `run_grunt` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  grunt_cli: {
+  run_grunt: {
     options: {
       // Task-specific options go here.
     },

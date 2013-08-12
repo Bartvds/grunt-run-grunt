@@ -31,12 +31,12 @@ var tests = {
 function fileEqual(test, actualName, expectedName, normalised) {
 	var actual = grunt.file.read('test/tmp/' + actualName);
 	var expected = grunt.file.read('test/expected/' + expectedName);
-	if (normalised){
+	if (normalised) {
 		actual = grunt.util.normalizelf(actual);
 		expected = grunt.util.normalizelf(expected);
 	}
 	test.ok(actual, 'actual should be ok: ' + actualName);
-	test.ok(expected,'expected should be ok: ' + expectedName);
+	test.ok(expected, 'expected should be ok: ' + expectedName);
 	test.deepEqual(actual, expected, 'should match values');
 }
 
@@ -47,7 +47,10 @@ function testFileEqual(tests, label, actualName, expectedName) {
 		test.done();
 	};
 }
+function testFileEqualSet(tests, name, subPath) {
+	testFileEqual(tests, name, subPath, subPath);
+}
+testFileEqualSet(tests, 'dummy-write_xray_one', 'dummy/write_xray_one.txt');
+testFileEqualSet(tests, 'logFile-basic', 'logFile/basic.txt');
 
-testFileEqual(tests, 'basic-write_xray_one', 'write_xray_one.txt', 'write_xray_one.txt');
-
-exports.grunt_cli = tests;
+exports.run_grunt = tests;
