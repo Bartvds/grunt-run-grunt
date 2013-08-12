@@ -6,7 +6,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 	//var assert = require('assert');
 	var _ = grunt.util._;
 
-	var mixiedStdIO = [];
+	var mixedStdIO = [];
 	var taskList = [];
 
 	var cwd = (_.isUndefined(options.cwd) || _.isNull(options.cwd) ? path.dirname(src) : options.cwd);
@@ -77,7 +77,6 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 		res: null,
 		fail: false,
 		output: '',
-		mixiedStdIO: mixiedStdIO,
 		tasks: taskList,
 		options: options
 	};
@@ -103,6 +102,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 
 		//TODO chmod the shell-script?
 
+		// semi broken
 		var batPath = base + '.bat';
 		var batContent = [
 			'set PWD=%~dp0',
@@ -111,6 +111,8 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 			'cd "%PWD%"',
 			''
 		].join('\r\n');
+
+		console.log('argArr: ' + argArr.join(' '));
 		grunt.file.write(batPath, batContent);
 	}
 
@@ -132,7 +134,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 			result.error = err;
 			result.res = res;
 			result.code = code;
-			result.output = mixiedStdIO.join('');
+			result.output = mixedStdIO.join('');
 			result.end = Date.now();
 			result.duration = (result.end - result.start);
 
@@ -170,7 +172,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 			}
 
 			// log the log
-			if (options.log && mixiedStdIO.length > 0) {
+			if (options.log && mixedStdIO.length > 0) {
 
 				if (_.isString(options.indentLog) && options.indentLog !== '') {
 					//TODO optimise this
@@ -195,10 +197,10 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 	);
 	// mix output
 	child.stdout.on('data', function (data) {
-		mixiedStdIO.push(data);
+		mixedStdIO.push(data);
 	});
 	child.stderr.on('data', function (data) {
-		mixiedStdIO.push(data);
+		mixedStdIO.push(data);
 	});
 }
 

@@ -34,7 +34,8 @@ module.exports = function (grunt) {
 		run_grunt: {
 			options: {
 				//debugCli: true,
-				//writeShell: 'test/shell/',
+				writeShell: 'test/shell/',
+				stack: true,
 
 				//update this
 				minimumFiles: 6
