@@ -15,8 +15,9 @@ module.exports = function (grunt) {
 		},
 		run_grunt: {
 			echo: {
-				task: 'echo:echo',
 				options: {
+					task: 'echo:echo',
+					'no-color': true,
 					logFile: 'tmp/task/echo.txt'
 				},
 				src: ['Gruntfile-dummy.js']

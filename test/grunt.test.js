@@ -50,7 +50,9 @@ function testFileEqual(tests, label, actualName, expectedName) {
 function testFileEqualSet(tests, name, subPath) {
 	testFileEqual(tests, name, subPath, subPath);
 }
+
 testFileEqualSet(tests, 'dummy-write_xray_one', 'dummy/write_xray_one.txt');
 testFileEqualSet(tests, 'logFile-basic', 'logFile/basic.txt');
+testFileEqualSet(tests, 'task-echo', 'task/echo.txt');
 
 exports.run_grunt = tests;

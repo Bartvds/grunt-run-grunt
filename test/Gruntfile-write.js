@@ -1,6 +1,7 @@
 'use strict';
 
 // var helper = require('./helper');
+var path = require('path');
 
 module.exports = function (grunt) {
 
@@ -23,12 +24,12 @@ module.exports = function (grunt) {
 		echo: {
 			before: {
 				options: {
-					echo: 'before: ' + __filename
+					echo: 'before: ' + path.basename(__filename)
 				}
 			},
 			after: {
 				options: {
-					echo: 'after: ' + __filename
+					echo: 'after: ' + path.basename(__filename)
 				}
 			}
 		}

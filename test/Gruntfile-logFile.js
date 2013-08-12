@@ -17,6 +17,7 @@ module.exports = function (grunt) {
 			logWrite: {
 				options: {
 					help: true,
+					'no-color': true,
 					logFile: 'tmp/logFile/basic.txt',
 					process: function (result) {
 						result.output = '[logFile output replaced]';

@@ -15,6 +15,7 @@ module.exports = function (grunt) {
 				options: {
 					help: true,
 					log: false,
+					'no-color': true,
 					process: function (result) {
 						console.dir(result);
 

@@ -1,6 +1,7 @@
 'use strict';
 
 // var helper = require('./helper');
+var path = require('path');
 
 module.exports = function (grunt) {
 
@@ -19,12 +20,12 @@ module.exports = function (grunt) {
 		echo: {
 			before: {
 				options: {
-					echo: 'before: ' + __filename
+					echo: 'before: ' + path.basename(__filename)
 				}
 			},
 			after: {
 				options: {
-					echo: 'after: ' + __filename
+					echo: 'after: ' + path.basename(__filename)
 				}
 			},
 			echo: {
@@ -37,7 +38,13 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('default', ['echo:before', 'dummies', 'echo:after']);
 
-	grunt.registerTask('dummies', ['dummy_tango:tango_one', 'dummy_tango:tango-two', 'echo:echo', 'dash-victor:victor_one', 'dash-victor:victor-two']);
+	grunt.registerTask('dummies', [
+		'dummy_tango:tango_one',
+		'dummy_tango:tango-two',
+		'echo:echo',
+		'dash-victor:victor_one',
+		'dash-victor:victor-two'
+	]);
 
 	grunt.registerTask('tangos', ['dummy_tango:tango_one', 'dummy_tango:tango_two']);
 	grunt.registerTask('victors', ['dash-victor:victor_one', 'dash-victor:victor-two']);

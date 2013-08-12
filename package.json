@@ -20,6 +20,13 @@
       "url": "https://github.com/Bartvds/grunt-grunt-cli/blob/master/LICENSE-MIT"
     }
   ],
+  "keywords": [
+    "gruntplugin",
+    "grunt-cli",
+    "spawn",
+    "grunt",
+    "run"
+  ],
   "main": "Gruntfile.js",
   "engines": {
     "node": ">= 0.8.0"
@@ -32,14 +39,12 @@
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
     "jshint-path-reporter": "~0.1",
-    "grunt": "0.4.1"
+    "grunt": "0.4.1",
+    "grunt-cli": "0.1"
   },
   "peerDependencies": {
     "grunt": "0.4.1"
-  },
-  "keywords": [
-    "gruntplugin"
-  ],
+  }
   "dependencies": {
     "chai": "~1.7.2"
   }

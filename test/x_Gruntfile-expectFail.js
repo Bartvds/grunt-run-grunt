@@ -11,18 +11,15 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 		run_grunt: {
+			options: {
+				expectFail: true
+			},
 			warn: {
 				task: 'fail_warn',
-				options: {
-					expectFail: true
-				},
 				src: ['./fail/Gruntfile-fail.js']
 			},
 			fatal: {
 				task: 'fail_fatal',
-				options: {
-					expectFail: true
-				},
 				src: ['./fail/Gruntfile-fail.js']
 			}
 		}

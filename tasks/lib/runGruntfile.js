@@ -71,16 +71,26 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 
 	//return value
 	var result = {
-		start: Date.now(),
-		cwd: cwd,
-		src: src,
+		error: null,
 		res: null,
+		code: '',
+
 		fail: false,
 		output: '',
+
+		src: src,
+		cwd: cwd,
+
 		tasks: taskList,
-		options: options
+		options: options,
+
+		// timing
+		start: Date.now(),
+		end: Date.now(),
+		duration: 0
 	};
 
+	// experimental
 	if (options.writeShell) {
 		var dir = options.writeShell;
 		if (grunt.file.isFile(options.writeShell)) {
@@ -90,6 +100,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 		var gf = path.basename(src.toLowerCase(), path.extname(src));
 		var base = path.join(dir, options.target + '__' + gf);
 
+		// beh
 		var shPath = base + '.sh';
 		var shContent = [
 			'#!/bin/bash',
@@ -182,6 +193,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 					grunt.log.writeln(result.output);
 				}
 			}
+			// write log
 			if (options.logFile) {
 				var tmp = options.logFile;
 				if (grunt.file.isDir(tmp)) {
@@ -195,7 +207,8 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 			callback(err, result);
 		}
 	);
-	// mix output
+
+	// mix output (this wise?)
 	child.stdout.on('data', function (data) {
 		mixedStdIO.push(data);
 	});

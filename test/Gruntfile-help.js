@@ -11,6 +11,7 @@ module.exports = function (grunt) {
 		run_grunt: {
 			basic_help: {
 				options: {
+					'no-color': true,
 					help: true
 				},
 				src: ['Gruntfile-dummy.js']

@@ -33,15 +33,24 @@ module.exports = function (grunt) {
 		// dogfooding
 		run_grunt: {
 			options: {
-				//debugCli: true,
-				writeShell: 'test/shell/',
-				stack: true,
 
-				//update this
-				minimumFiles: 6
 			},
 			all_tests: {
-				src: ['test/Gruntfile*.js']
+				src: ['test/Gruntfile*.js'],
+				options: {
+					debugCli: true,
+					//writeShell: 'test/shell/',
+					stack: true,
+
+					//update this
+					minimumFiles: 6
+				}
+			},
+			task: {
+				options: {
+					minimumFiles: 1
+				},
+				src: ['test/Gruntfile-task.js']
 			}
 		},
 		nodeunit: {
@@ -49,8 +58,12 @@ module.exports = function (grunt) {
 		}
 	});
 
-	grunt.registerTask('test', ['clean', 'jshint', 'run_grunt', 'nodeunit']);
+	grunt.registerTask('prep', ['clean', 'jshint']);
+
+	grunt.registerTask('test', ['prep', 'run_grunt', 'nodeunit']);
 
 	grunt.registerTask('default', ['test']);
+
+	grunt.registerTask('dev', ['prep', 'run_grunt:task']);
 
 };
