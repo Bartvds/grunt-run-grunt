@@ -2,6 +2,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 
 	var path = require('path');
 	var conf = require('./lib');
+
 	//var os = require('os');
 	//var assert = require('assert');
 	var _ = grunt.util._;
@@ -29,7 +30,10 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 		// timing
 		start: Date.now(),
 		end: Date.now(),
-		duration: 0
+		duration: 0,
+
+		// additional data (parsed etc)
+		data: {}
 	};
 
 	var useArgs = options.args;
@@ -181,7 +185,7 @@ function runGruntfile(grunt, src, tasks, options, callback) {
 
 				if (_.isString(options.indentLog) && options.indentLog !== '') {
 					//TODO optimise this
-					grunt.log.writeln(options.indentLog + result.output.split(/\r\n|\r|\n/g).join('\n' + options.indentLog));
+					grunt.log.writeln(options.indentLog + result.output.replace(/\r\n|\r|\n/g, '\n' + options.indentLog));
 				}
 				else {
 					grunt.log.writeln(result.output);

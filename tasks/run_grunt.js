@@ -36,6 +36,7 @@ var baseOptions = {
 	indentLog: lib.indentLog,
 	process: null,
 	minimumFiles: 1,
+	maximumFiles: 10,
 	concurrent: 4,
 	expectFail: false
 };
@@ -77,12 +78,28 @@ module.exports = function (grunt) {
 		var start = Date.now();
 		var counter = 0;
 
-		// loop gruntfiles
-		grunt.util.async.forEachLimit(this.filesSrc, options.concurrent, function (filePath, callback) {
+		var files = [];
+		_.forEach(this.filesSrc, function (filePath) {
 			if (!grunt.file.exists(filePath)) {
 				grunt.log.writeln(lib.nub + 'not found "' + filePath + '"'.yellow);
 				return false;
 			}
+			files.push(filePath);
+		});
+
+		if (_.isNumber(options.minimumFiles) && options.minimumFiles > 0 && files.length < options.minimumFiles) {
+			grunt.fail.warn('expected at least ' + lib.pluralise(options.minimumFiles, 'gruntfile') + ' but ' + ('found only ' + files.length).red);
+			done();
+			return;
+		}
+		if (_.isNumber(options.maximumFiles) && options.maximumFiles > 0 && files.length > options.maximumFiles) {
+			grunt.fail.warn('expected at most ' + lib.pluralise(options.maximumFiles, 'gruntfile') + ' but ' + ('found ' + files.length).red);
+			done();
+			return;
+		}
+
+		// loop gruntfiles
+		grunt.util.async.forEachLimit(files, options.concurrent, function (filePath, callback) {
 			counter++;
 
 			var runOptions = {
@@ -138,11 +155,7 @@ module.exports = function (grunt) {
 				// fancy report
 				var end = ' (' + (Date.now() - start) + 'ms)\n';
 
-				var total = passed.length + failed.length;
-
-				if (_.isNumber(options.minimumFiles) && options.minimumFiles > 0 && total < options.minimumFiles) {
-					grunt.fail.warn('expected at least ' + lib.pluralise(options.minimumFiles, 'gruntfile') + ' but ' + ('found only ' + total).red + end);
-				}
+				//var total = passed.length + failed.length;
 
 				if (failed.length > 0) {
 					_.each(failed, function (res) {

@@ -17,6 +17,7 @@ var assertResult = miniSuite.getSuite('assertResult', {
 	'output': function (result, assert) {
 		assert.isObject(result.res, 'res');
 		assert.isString(result.output, 'output');
+		assert.isObject(result.data, 'data');
 	},
 	'tasks': function (result, assert) {
 		assert.isArray(result.tasks, 'result.tasks');

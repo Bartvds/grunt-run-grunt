@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 		clean: {
-			tests: ['tmp/dummy/**/*']
+			tests: ['tmp/write/**/*']
 		},
 		write_xray: {
 			one: {

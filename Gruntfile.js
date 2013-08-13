@@ -39,39 +39,37 @@ module.exports = function (grunt) {
 				concurrent: 2
 			},
 			all_tests: {
-				src: ['test/Gruntfile*.js'],
 				options: {
-					// debugCli: true,
+					debugCli: true,
 					// writeShell: 'test/shell/',
 					stack: true,
 
 					// keep this updated
-					minimumFiles: 7
-				}
+					minimumFiles: 6
+				},
+				src: ['test/Gruntfile*.js']
 			},
 			task: {
-				options: {
-					minimumFiles: 1
-				},
 				src: ['test/Gruntfile-task.js']
 			},
 			process: {
-				options: {
-					minimumFiles: 1
-				},
-				src: ['test/Gruntfile-process-*.js']
+				src: ['test/Gruntfile-process.js']
+			},
+			help: {
+				src: ['test/Gruntfile-help.js']
 			}
 		}
 	});
 
 	grunt.registerTask('prep', ['clean', 'jshint']);
 
-	grunt.registerTask('test', ['prep', 'run_grunt', 'mochaTest']);
+	grunt.registerTask('test', ['prep', 'run_grunt:all_tests', 'mochaTest']);
 
 	grunt.registerTask('default', ['test']);
 
 	grunt.registerTask('dev', ['prep', 'run_grunt:task']);
 	grunt.registerTask('edit_01', ['mochaTest']);
 	grunt.registerTask('edit_02', ['prep', 'run_grunt:process']);
+	grunt.registerTask('edit_03', ['prep', 'run_grunt:help']);
 
 };

@@ -9,6 +9,9 @@ module.exports = function (grunt) {
 	grunt.loadTasks('./test_tasks');
 
 	grunt.initConfig({
+		clean: {
+			tests: ['tmp/dummy/**/*']
+		},
 		dummy_tango: {
 			tango_one: {},
 			"tango-two": {}

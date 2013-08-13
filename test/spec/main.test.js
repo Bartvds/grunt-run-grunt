@@ -34,7 +34,8 @@ describe('grunt-run-grunt', function () {
 		testFileEqualPair(true, 'dummy/write_xray_one.txt');
 		testFileEqualPair(true, 'logFile/basic.txt');
 		testFileEqualPair(true, 'task/echo.txt');
-		testFileEqualPair(true, 'process-assert/result_valid.txt');
-		testFileEqualPair(true, 'process-output/replace.txt');
+		testFileEqualPair(true, 'process/result_valid.txt');
+		testFileEqualPair(true, 'process/replace.txt');
+		testFileEqualPair(true, 'help/dummy_help.txt');
 	});
 });

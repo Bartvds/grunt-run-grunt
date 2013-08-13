@@ -12,7 +12,31 @@ module.exports = function (grunt) {
 	grunt.loadTasks('./test_tasks');
 
 	grunt.initConfig({
+		clean: {
+			tests: ['tmp/process/**/*']
+		},
 		run_grunt: {
+			result_valid: {
+				options: {
+					help: true,
+					log: false,
+					'no-color': true,
+					process: function (result) {
+						helper.assertResult('run_grunt:result', result, function (ctx) {
+							ctx.assertion();
+
+							if (ctx.fail){
+								result.fail = ctx.fail;
+								grunt.file.write('tmp/process/result_valid.txt', 'result assertion failed');
+							}
+							else {
+								grunt.file.write('tmp/process/result_valid.txt', 'result assertion passed');
+							}
+						});
+					}
+				},
+				src: ['Gruntfile-dummy.js']
+			},
 			replace: {
 				options: {
 					help: true,
@@ -23,7 +47,7 @@ module.exports = function (grunt) {
 							ctx.assertion();
 
 							result.output = '[output replaced]';
-							grunt.file.write('tmp/process-output/replace.txt', 'new content');
+							grunt.file.write('tmp/process/replace.txt', 'new content');
 						});
 					}
 				},
@@ -44,6 +68,6 @@ module.exports = function (grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['echo:before', 'run_grunt', 'echo:after']);
+	grunt.registerTask('default', ['clean', 'echo:before', 'run_grunt', 'echo:after']);
 
 };
