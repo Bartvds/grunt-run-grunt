@@ -54,6 +54,12 @@ module.exports = function (grunt) {
 					minimumFiles: 1
 				},
 				src: ['test/Gruntfile-task.js']
+			},
+			process: {
+				options: {
+					minimumFiles: 1
+				},
+				src: ['test/Gruntfile-process-*.js']
 			}
 		}
 	});
@@ -66,5 +72,6 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('dev', ['prep', 'run_grunt:task']);
 	grunt.registerTask('edit_01', ['mochaTest']);
+	grunt.registerTask('edit_02', ['prep', 'run_grunt:process']);
 
 };

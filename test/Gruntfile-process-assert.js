@@ -11,20 +11,19 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 		run_grunt: {
-			result: {
+			result_valid: {
 				options: {
 					help: true,
 					log: false,
 					'no-color': true,
 					process: function (result) {
-						console.dir(result);
-
 						helper.assertResult('run_grunt:result', result, function (ctx) {
-							grunt.log.writeln(ctx.log);
-
 							if (ctx.fail){
-								console.log(ctx);
 								result.fail = ctx.fail;
+								grunt.file.write('tmp/process-assert/result_valid.txt', 'result assertion failed');
+							}
+							else {
+								grunt.file.write('tmp/process-assert/result_valid.txt', 'result assertion passed');
 							}
 						});
 					}

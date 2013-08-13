@@ -39,12 +39,10 @@ function reportSuiteResult(res) {
 			log.push('- ' + res.name + '\n   ' + (res.err.message ? res.err.message : res.err));
 		});
 	}
+	console.log('reportSuiteResult');
 	// override
 	res.log = log.join('\n');
 	res.message = summary;
-	res.assertion = function () {
-		assertResult(res);
-	};
 	res.report(res);
 }
 
@@ -60,18 +58,20 @@ function hasOwnProp(obj, name) {
 		}
 	}
 */
-function getSuite(testName, tests, report) {
+function getSuite(testName, tests) {
 
-	var func = function (caseLabel, topic) {
+	var func = function (caseLabel, topic, report) {
 
 		var res = {
 			name: testName,
 			tests: tests,
-			// default to throwing
-			report: report || function () {
+			assertion: function () {
 				assertResult(res);
 			},
-
+			// default to throwing
+			report: report || function () {
+				res.assertion();
+			},
 			label: caseLabel,
 			topic: topic,
 			failed: [],

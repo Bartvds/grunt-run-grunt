@@ -16,12 +16,14 @@ module.exports = function (grunt) {
 			replace: {
 				options: {
 					help: true,
-					log: true,
+					log: false,
 					'no-color': true,
 					process: function (result) {
 						helper.assertResult('run_grunt:result', result, function (ctx) {
-							result.output = '[output replaced]';
 							ctx.assertion();
+
+							result.output = '[output replaced]';
+							grunt.file.write('tmp/process-output/replace.txt', 'new content');
 						});
 					}
 				},
