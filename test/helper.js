@@ -1,27 +1,27 @@
 var miniSuite = require('./lib/miniSuite');
 
 var assertResult = miniSuite.getSuite('assertResult', {
-	'defined': function (assert, result) {
+	'defined': function (result, assert) {
 		assert.ok(result, 'result');
 		assert.isObject(result, 'result');
 	},
-	'timing': function (assert, result) {
+	'timing': function (result, assert) {
 		assert.isNumber(result.start, 'start');
 		assert.isNumber(result.end, 'end');
 		assert.isNumber(result.duration, 'duration');
 	},
-	'paths': function (assert, result) {
+	'paths': function (result, assert) {
 		assert.isString(result.cwd, 'cwd');
 		assert.isString(result.src, 'src');
 	},
-	'output': function (assert, result) {
+	'output': function (result, assert) {
 		assert.isObject(result.res, 'res');
 		assert.isString(result.output, 'output');
 	},
-	'tasks': function (assert, result) {
+	'tasks': function (result, assert) {
 		assert.isArray(result.tasks, 'result.tasks');
 	},
-	'options': function (assert, result) {
+	'options': function (result, assert) {
 		assert.isObject(result.options, 'result.options');
 	}
 });

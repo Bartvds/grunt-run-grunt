@@ -10,25 +10,28 @@ module.exports = function (grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-nodeunit');
+	grunt.loadNpmTasks('grunt-mocha-test');
 
 	grunt.loadTasks('tasks');
 
 	grunt.initConfig({
+		clean: {
+			tmp: ['tmp/**/*', 'test/tmp/**/*', 'test/shell/**/*']
+		},
 		jshint: {
 			options: {
 				reporter: './node_modules/jshint-path-reporter',
 				jshintrc: '.jshintrc'
 			},
-			all: [
-				'Gruntfile.js',
-				'tasks/**/*.js',
-				'lib/**/*.js',
-				'test/**/*.js'
-			]
+			all: [ 'Gruntfile.js', 'tasks/**/*.js', 'lib/**/*.js', 'test/**/*.js']
 		},
-		clean: {
-			tmp: ['tmp/**/*', 'test/tmp/**/*', 'test/shell/**/*']
+		mochaTest: {
+			options: {
+				reporter: 'mocha-unfunk-reporter'
+			},
+			all: {
+				src: ['test/init.js', 'test/spec/**/*.test.js']
+			}
 		},
 		// dogfooding
 		run_grunt: {
@@ -42,7 +45,7 @@ module.exports = function (grunt) {
 					// writeShell: 'test/shell/',
 					stack: true,
 
-					//keep this updated
+					// keep this updated
 					minimumFiles: 7
 				}
 			},
@@ -52,18 +55,16 @@ module.exports = function (grunt) {
 				},
 				src: ['test/Gruntfile-task.js']
 			}
-		},
-		nodeunit: {
-			tests: ['test/**/*.test.js']
 		}
 	});
 
 	grunt.registerTask('prep', ['clean', 'jshint']);
 
-	grunt.registerTask('test', ['prep', 'run_grunt', 'nodeunit']);
+	grunt.registerTask('test', ['prep', 'run_grunt', 'mochaTest']);
 
 	grunt.registerTask('default', ['test']);
 
 	grunt.registerTask('dev', ['prep', 'run_grunt:task']);
+	grunt.registerTask('edit_01', ['mochaTest']);
 
 };

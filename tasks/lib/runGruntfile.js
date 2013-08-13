@@ -1,7 +1,7 @@
 function runGruntfile(grunt, src, tasks, options, callback) {
 
 	var path = require('path');
-	var conf = require('./conf');
+	var conf = require('./lib');
 	//var os = require('os');
 	//var assert = require('assert');
 	var _ = grunt.util._;

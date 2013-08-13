@@ -6,10 +6,9 @@
 
 'use strict';
 
-function pluralise(count, str) {
-	return count + ' ' + str + (count === 1 ? '' : 's');
-}
-var conf = require('./lib/conf');
+var lib = require('./lib/lib');
+
+var runGruntfile = require('./lib/runGruntfile').runGruntfile;
 
 // with flag type
 var cliParams = {
@@ -34,14 +33,12 @@ var baseOptions = {
 	//noAnsi: true,
 	debugCli: false,
 	writeShell: null,
-	indentLog: conf.indentLog,
+	indentLog: lib.indentLog,
 	process: null,
 	minimumFiles: 1,
 	concurrent: 4,
 	expectFail: false
 };
-
-var runGruntfile = require('./lib/runGruntfile').runGruntfile;
 
 module.exports = function (grunt) {
 
@@ -83,7 +80,7 @@ module.exports = function (grunt) {
 		// loop gruntfiles
 		grunt.util.async.forEachLimit(this.filesSrc, options.concurrent, function (filePath, callback) {
 			if (!grunt.file.exists(filePath)) {
-				grunt.log.writeln(conf.nub + 'not found "' + filePath + '"'.yellow);
+				grunt.log.writeln(lib.nub + 'not found "' + filePath + '"'.yellow);
 				return false;
 			}
 			counter++;
@@ -111,7 +108,7 @@ module.exports = function (grunt) {
 				}
 			});
 
-			grunt.log.writeln(conf.nub + 'starting ' + ' "' + filePath + '"');
+			grunt.log.writeln(lib.nub + 'starting ' + ' "' + filePath + '"');
 
 			// run it
 			runGruntfile(grunt, filePath, options.task, runOptions, function (err, result) {
@@ -123,10 +120,10 @@ module.exports = function (grunt) {
 					var end = ' "' + filePath + '" (' + (result.duration) + 'ms)';
 					if (result.fail) {
 						failed.push(result);
-						grunt.log.writeln(conf.nub + 'failed'.yellow + end);
+						grunt.log.writeln(lib.nub + 'failed'.yellow + end);
 					} else {
 						passed.push(result);
-						grunt.log.writeln(conf.nub + 'finished ' + end);
+						grunt.log.writeln(lib.nub + 'finished ' + end);
 					}
 					callback(err, result);
 				}
@@ -144,7 +141,7 @@ module.exports = function (grunt) {
 				var total = passed.length + failed.length;
 
 				if (_.isNumber(options.minimumFiles) && options.minimumFiles > 0 && total < options.minimumFiles) {
-					grunt.fail.warn('expected at least ' + pluralise(options.minimumFiles, 'gruntfile') + ' but ' + ('found only ' + total).red + end);
+					grunt.fail.warn('expected at least ' + lib.pluralise(options.minimumFiles, 'gruntfile') + ' but ' + ('found only ' + total).red + end);
 				}
 
 				if (failed.length > 0) {
@@ -152,15 +149,15 @@ module.exports = function (grunt) {
 						grunt.log.writeln('-> failed '.red + res.options.target + ' @ "' + res.src + '"');
 					});
 					grunt.log.writeln('');
-					warnFail((pluralise(failed.length, 'gruntfile') + ' failed').red + ' and ' + ('completed ' + passed.length).green + end);
+					warnFail((lib.pluralise(failed.length, 'gruntfile') + ' failed').red + ' and ' + ('completed ' + passed.length).green + end);
 				}
 				else {
 					grunt.log.writeln('');
 					if (passed.length === 0) {
-						grunt.log.ok('completed ' + pluralise(passed.length, 'gruntfile').yellow + '' + end);
+						grunt.log.ok('completed ' + lib.pluralise(passed.length, 'gruntfile').yellow + '' + end);
 					}
 					else {
-						grunt.log.ok('completed ' + pluralise(passed.length, 'gruntfile').green + '' + end);
+						grunt.log.ok('completed ' + lib.pluralise(passed.length, 'gruntfile').green + '' + end);
 					}
 				}
 

@@ -47,11 +47,23 @@ function reportSuiteResult(res) {
 	};
 	res.report(res);
 }
-// 
+
+function hasOwnProp(obj, name) {
+	return Object.prototype.hasOwnProperty.call(obj, name);
+}
+
+/*
+	{
+		"label" : function(topic, assert){
+			assert.ok(topic, 'top ok');
+			assert.ok(topic.prop, 'top.prop ok');
+		}
+	}
+*/
 function getSuite(testName, tests, report) {
 
 	var func = function (caseLabel, topic) {
-		// lazy loop
+
 		var res = {
 			name: testName,
 			tests: tests,
@@ -68,8 +80,9 @@ function getSuite(testName, tests, report) {
 			fail: false
 		};
 
+		// lazy loop
 		for (var name in tests) {
-			if (!tests.hasOwnProperty(name)) {
+			if (!hasOwnProp(tests, name)) {
 				continue;
 			}
 			var testCase = tests[name];
@@ -80,7 +93,7 @@ function getSuite(testName, tests, report) {
 			};
 
 			try {
-				testCase.call(null, assert, topic);
+				testCase.call(null, topic, assert);
 			}
 			catch (e) {
 				item.err = e;
