@@ -6,9 +6,9 @@
 
 'use strict';
 
-var lib = require('./lib/lib');
+var lib = require('./../lib/lib');
 
-var runGruntfile = require('./lib/runGruntfile').runGruntfile;
+var runGruntfile = require('./../lib/runGruntfile').runGruntfile;
 
 // with flag type
 var cliParams = {
@@ -38,7 +38,8 @@ var baseOptions = {
 	minimumFiles: 1,
 	maximumFiles: 10,
 	concurrent: 4,
-	expectFail: false
+	expectFail: false,
+	parser: null
 };
 
 module.exports = function (grunt) {

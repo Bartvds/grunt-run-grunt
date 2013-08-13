@@ -1,3 +1,4 @@
+var util = require('util');
 var miniSuite = require('./lib/miniSuite');
 
 var assertResult = miniSuite.getSuite('assertResult', {
@@ -17,13 +18,13 @@ var assertResult = miniSuite.getSuite('assertResult', {
 	'output': function (result, assert) {
 		assert.isObject(result.res, 'res');
 		assert.isString(result.output, 'output');
-		assert.isObject(result.data, 'data');
+		assert.isObject(result.parsed, 'parsed');
 	},
 	'tasks': function (result, assert) {
-		assert.isArray(result.tasks, 'result.tasks');
+		assert.isArray(result.tasks, 'tasks');
 	},
 	'options': function (result, assert) {
-		assert.isObject(result.options, 'result.options');
+		assert.isObject(result.options, 'options');
 	}
 });
 
@@ -33,9 +34,13 @@ function toUnixNewline(str) {
 function toWindowNewLine(str) {
 	return str.replace(/\r\n|\r|\n/g, "\r\n");
 }
+function inspect(value, depth){
+	console.log(util.inspect(value, false, depth || 10));
+}
 
 module.exports = {
 	toWindowNewLine: toWindowNewLine,
 	toUnixNewline: toUnixNewline,
+	inspect: inspect,
 	assertResult: assertResult
 };

@@ -1,0 +1,34 @@
+{
+	"task": {
+		"dash-victor": "cli test \"dash-victor\" task",
+		"write_xray": "cli test \"write_xray\" task",
+		"fail_warn": "cli test \"fail_warn\" task"
+	},
+	"alias": {
+		"default": [
+			"echo:before",
+			"dummies",
+			"echo:after"
+		],
+		"dummies": [
+			"dummy_tango:tango_one",
+			"dummy_tango:tango-two",
+			"echo:echo",
+			"dash-victor:victor_one",
+			"dash-victor:victor-two"
+		],
+		"tangos": [
+			"dummy_tango:tango_one",
+			"dummy_tango:tango_two"
+		],
+		"victors": [
+			"dash-victor:victor_one",
+			"dash-victor:victor-two"
+		],
+		"multi": [
+			"echo:before",
+			"echo:echo",
+			"echo:after"
+		]
+	}
+}

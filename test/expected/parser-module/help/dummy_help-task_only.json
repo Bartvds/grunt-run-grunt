@@ -1,0 +1,8 @@
+{
+	"task": {
+		"dash-victor": "cli test \"dash-victor\" task",
+		"write_xray": "cli test \"write_xray\" task",
+		"fail_warn": "cli test \"fail_warn\" task"
+	},
+	"alias": {}
+}

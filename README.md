@@ -6,6 +6,8 @@
 
 :warning: This project is pre-alpha. Use with care until 0.1.0
 
+:bangbang: Console output not reliable on Windows as Node.js there doesn't always flush buffers before exiting. Until this is fixed use the Vagrantfile instead (see below).
+ 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
 
@@ -23,11 +25,13 @@ grunt.loadNpmTasks('grunt-run-grunt');
 
 ## The "run_grunt" task
 
-> *"Yo dawg! I herd you like grunt, so I put some grunt in your grunt so you can grunt while you grunt."*
+> *"Yo dawg! I herd you like grunt, so I put some grunt in your grunt so you can grunt while you grunt."* 
 
-Use the `run_grunt` task to spawn new processes that run `grunt-cli` and optionally work on the various result data. It will use the global `$ grunt` command.
+Use the `run_grunt` task to spawn new processes that run `grunt-cli` and optionally work on the various result data. It will use the global `$ grunt` command so each grunt version is local to its Gruntfile, just like when you manually grunt.
 
-Main use-case is testing your gruntfile or grunt-plugins, but it is also suited for creative use of gruntfiles and grunt-cli output.
+Main use-case is testing your gruntfile or grunt-plugins, but it is also suited for creative use of gruntfiles and grunt-cli output. For example to verify the final output of various reporters and formatters. 
+
+Alternately parse the output of the "$grunt --help" command and work with the list of tasks and aliases.
 
 If you need something like this to run grunt in a production build environment or don't care about the content of the cli output then you are probably looking for [grunt-hub](https://github.com/shama/grunt-hub).
 
@@ -80,7 +84,7 @@ version: boolean
 task: ['clean', 'jshint:strictTarget', 'mocha:subTarget']
 
 // process the result data object
-process: function(res){
+process: function(result){
 	// see below for result structure
 },
 
@@ -92,6 +96,9 @@ indentLog: '  |  ',
 
 // save raw output to file
 logFile: null,
+
+// apply an output parser (see below for values)
+parser: '',
 
 // how many parallel grunts to run
 concurrent: 4,
@@ -121,6 +128,12 @@ expectFail: false
 fail: false,
 output: 'string',
 
+// parsed data
+parsed: {
+	'myParserName' : {}
+	..
+},
+
 // raw grunt.util.spawn callback arguments
 error,
 res,
@@ -138,9 +151,19 @@ end: 0,
 duration: 0
 ```
 
+### Parsers
+
+Crude but working:
+
+**parseHelp**
+
+* Use the `process` option to access the data.
+* Returns `result.parsed.parseHelp` object with task and alias names.
+* Requires `help` option
+
 # History
 
-* 0.0.x -Pre-alpha prototype
+* 0.0.2 - Solidifying and added parsing helper to extract tasks and aliases.
 
 ## Contributing
 

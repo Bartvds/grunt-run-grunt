@@ -39,7 +39,7 @@ function reportSuiteResult(res) {
 			log.push('- ' + res.name + '\n   ' + (res.err.message ? res.err.message : res.err));
 		});
 	}
-	console.log('reportSuiteResult');
+
 	// override
 	res.log = log.join('\n');
 	res.message = summary;

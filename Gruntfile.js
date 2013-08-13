@@ -31,6 +31,9 @@ module.exports = function (grunt) {
 			},
 			all: {
 				src: ['test/init.js', 'test/spec/**/*.test.js']
+			},
+			parser_module: {
+				src: ['test/init.js', 'test/spec/parser-module.test.js']
 			}
 		},
 		// dogfooding
@@ -42,7 +45,6 @@ module.exports = function (grunt) {
 				options: {
 					debugCli: true,
 					// writeShell: 'test/shell/',
-					stack: true,
 
 					// keep this updated
 					minimumFiles: 6
@@ -57,13 +59,16 @@ module.exports = function (grunt) {
 			},
 			help: {
 				src: ['test/Gruntfile-help.js']
+			},
+			parser: {
+				src: ['test/Gruntfile-parser.js']
 			}
 		}
 	});
 
 	grunt.registerTask('prep', ['clean', 'jshint']);
 
-	grunt.registerTask('test', ['prep', 'run_grunt:all_tests', 'mochaTest']);
+	grunt.registerTask('test', ['prep', 'run_grunt:all_tests', 'mochaTest:all']);
 
 	grunt.registerTask('default', ['test']);
 
@@ -71,5 +76,6 @@ module.exports = function (grunt) {
 	grunt.registerTask('edit_01', ['mochaTest']);
 	grunt.registerTask('edit_02', ['prep', 'run_grunt:process']);
 	grunt.registerTask('edit_03', ['prep', 'run_grunt:help']);
+	grunt.registerTask('edit_04', ['prep', 'run_grunt:parser', 'mochaTest:parser_module']);
 
 };
