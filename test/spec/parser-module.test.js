@@ -19,7 +19,7 @@ describe('parser-module', function () {
 			assert.isObject(result.task, 'task');
 			assert.isObject(result.alias, 'alias');
 
-			console.log(JSON.stringify(result, null, 2));
+			//console.log(JSON.stringify(result, null, 2));
 
 			assert.deepEqual(result, expected, 'result, expected');
 		});
@@ -30,15 +30,12 @@ describe('parser-module', function () {
 			assert.isFunction(parsers.parseHelp, 'parsers.parseHelp');
 		});
 
-		describe.skip('should parse', function () {
+		describe('should parse', function () {
 			testParse('parser-module/help/dummy_help');
 			testParse('parser-module/help/dummy_help-alias_only');
 			testParse('parser-module/help/dummy_help-no_start');
 			testParse('parser-module/help/dummy_help-task_only');
-		});
-		describe('should parse', function () {
 			testParse('parser-module/help/gtx-soundCheck');
-
 		});
 	});
 });
