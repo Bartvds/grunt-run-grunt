@@ -41,7 +41,7 @@ describe('grunt-run-grunt', function () {
 
 	describe('task output', function () {
 
-		testFileEqualPair(true, 'dummy/write_xray_one.txt');
+		testFileEqualPair(true, 'dummy/write_file_one.txt');
 
 		testFileEqualPair(true, 'logFile/basic.txt');
 		testFileEqualPair(true, 'task/echo.txt');

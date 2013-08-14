@@ -68,7 +68,7 @@ module.exports = function (grunt) {
 			done();
 		}, 100);
 	});
-	grunt.registerMultiTask('write_xray', 'cli test "write_xray" task', function () {
+	grunt.registerMultiTask('write_file', 'cli test "write_file" task', function () {
 		write(this);
 	});
 	grunt.registerMultiTask('echo', 'cli test "echo" task', function () {

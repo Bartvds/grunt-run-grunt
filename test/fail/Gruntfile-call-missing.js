@@ -7,18 +7,16 @@ module.exports = function (grunt) {
 
 	grunt.loadTasks('../node_modules/grunt-contrib-clean/tasks');
 
-	// load test tasks
-	grunt.loadTasks('./test_tasks');
+	// load run_grunt
+	grunt.loadTasks('./../tasks');
 
 	grunt.initConfig({
-		clean: {
-			tests: ['tmp/write/**/*']
-		},
-		write_file: {
-			one: {
-				options: {
-					path: 'tmp/dummy/write_file_one.txt'
-				}
+		run_grunt: {
+			options: {
+			},
+			error: {
+				task: 'fail_warn',
+				src: ['./Gruntfile-missing-task']
 			}
 		},
 		echo: {
@@ -35,5 +33,6 @@ module.exports = function (grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['clean', 'echo:before', 'write_file', 'echo:after']);
+	grunt.registerTask('default', ['clean', 'echo:before', 'run_grunt', 'echo:after']);
+
 };
