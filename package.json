@@ -1,7 +1,7 @@
 {
   "name": "grunt-run-grunt",
-  "description": "Grunt task to run grunt as child process.",
-  "version": "0.0.3",
+  "description": "Grunt task to run grunt as child process. Gruntception!",
+  "version": "0.0.4",
   "homepage": "https://github.com/Bartvds/grunt-grunt-cli",
   "author": {
     "name": "Bart van der Schoor",
@@ -29,7 +29,7 @@
   ],
   "main": "Gruntfile.js",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">=0.8.0 <0.11.0"
   },
   "scripts": {
     "test": "grunt test"
@@ -44,11 +44,11 @@
     "chai": "~1.7.2",
     "chai-fs": "0.0.1",
     "mkdirp": "~0.3.5",
-    "mocha-unfunk-reporter": "~0.2.0"
+    "mocha-unfunk-reporter": "~0.2.0",
+    "grunt-bump": "0.0.11"
   },
   "peerDependencies": {
     "grunt": "0.4.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

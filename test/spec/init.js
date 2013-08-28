@@ -1,6 +1,7 @@
 var mkdirp = require('mkdirp');
 //var _ = require('underscore');
 
+var grunt = require('grunt');
 var chai = require('chai');
 chai.Assertion.includeStack = true;
 chai.should();
@@ -22,5 +23,12 @@ describe('grunt-run-grunt', function () {
 
 		chai.run_grunt = run_grunt;
 
+	});
+	it('module main is linked in package.json', function () {
+		var pkg = grunt.file.readJSON('package.json');
+		assert.isObject(pkg, 'pkg');
+
+		assert.property(pkg, 'main', 'pkg.main');
+		assert.isFile(pkg['main'], 'pkg.main');
 	});
 });

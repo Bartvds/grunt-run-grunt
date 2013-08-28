@@ -2,11 +2,11 @@
 
 [![Build Status](https://secure.travis-ci.org/Bartvds/grunt-run-grunt.png?branch=master)](http://travis-ci.org/Bartvds/grunt-run-grunt) [![Dependency Status](https://gemnasium.com/Bartvds/grunt-run-grunt.png)](https://gemnasium.com/Bartvds/grunt-run-grunt) [![NPM version](https://badge.fury.io/js/grunt-run-grunt.png)](http://badge.fury.io/js/grunt-run-grunt)
 
-> Grunt task to run grunt as child process.
+> Grunt task to run grunt as child process. Gruntception!
 
 :warning: This project is pre-alpha. Use with care until 0.1.0. (fixed version, no ~'s)
 
-:bangbang: Console output capture is not reliable on Windows as Node.js there doesn't always flush buffers before exiting. Until this is fixed Windows users use the Vagrantfile instead (see below).
+:bangbang: Console output capture is not reliable on Windows as Node.js there doesn't always flush buffers before exiting. Until this is fixed Windows users should use the Vagrantfile instead (see below).
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
@@ -27,15 +27,14 @@ grunt.loadNpmTasks('grunt-run-grunt');
 
 > *"Yo dawg! I herd you like grunt, so I put some grunt in your grunt so you can grunt while you grunt."* :laughing:
 
-Use the `run_grunt` task to spawn new processes that run `grunt-cli` and optionally do work on the result data. It will use the global `$ grunt` command so the grunt version is local to its Gruntfile, just like when you'd grunt manually.
+Use the `run_grunt` task to spawn new processes that run `grunt-cli` and optionally do work on the result data. It will use the global `$ grunt` command, just like when you'd run grunt manually.
 
-Main use-case is testing your gruntfile or grunt-plugins, but it is also suited for creative use of gruntfiles and grunt-cli output. For example use it to verify the final output of various reporters and formatters. 
-
-Alternately parse the output of the "$grunt --help" command and work with the list of tasks and aliases (without instrumenting the file).
+Main use-case is testing your gruntfile or grunt-plugins, but it is also suited for creative use of gruntfiles and grunt-cli output. For example use it to verify the final output of various reporters and formatters. Alternately parse the output of the "$grunt --help" command and work with the list of tasks and aliases (without instrumenting the gruntfile in any way).
 
 If you need something similar to run grunt in a production build environment or don't really care about the content of the cli output then you are probably looking for [grunt-hub](https://github.com/shama/grunt-hub) instead.
 
-In the future there will also be away to use this as a standard Node.js module, so you can run grunt from inside standard scripts. *Why?* Because you can.
+
+In the future there will also be a way to use this as a standard Node.js module, so you can run grunt from inside standard scripts. *Why?* Who knows?
 
 ### Usage
 
@@ -165,6 +164,7 @@ Parse `grunt -h` output
 
 # History
 
+* 0.0.4 - NPM push.
 * 0.0.3 - Various construction work.
 * 0.0.2 - Solidifying and added parsing helper to extract tasks and aliases.
 
