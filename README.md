@@ -31,8 +31,7 @@ Use the `run_grunt` task to spawn new processes that run `grunt-cli` and optiona
 
 Main use-case is testing your gruntfile or grunt-plugins, but it is also suited for creative use of gruntfiles and grunt-cli output. For example use it to verify the final output of various reporters and formatters. Alternately parse the output of the "$grunt --help" command and work with the list of tasks and aliases (without instrumenting the gruntfile in any way).
 
-If you need something similar to run grunt in a production build environment or don't really care about the content of the cli output then you are probably looking for [grunt-hub](https://github.com/shama/grunt-hub) instead.
-
+If you need something similar to run grunt in a production build environment or don't really care about the content of the cli output then you are probably looking for [grunt-hub](https://github.com/shama/grunt-hub) instead. If you need to run tasks from one Gruntfile concurrently use [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) or [grunt-parallel](https://github.com/iammerrick/grunt-parallel).
 
 In the future there will also be a way to use this as a standard Node.js module, so you can run grunt from inside standard scripts. *Why?* Who knows?
 
