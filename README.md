@@ -4,9 +4,7 @@
 
 > Grunt task to run grunt as child process. Gruntception!
 
-:warning: This project is pre-alpha. Use with care until 0.1.0. (fixed version, no ~'s)
-
-:bangbang: Console output capture is not reliable on Windows as Node.js there doesn't always flush buffers before exiting. Until this is fixed Windows users should use the Vagrantfile instead (see below).
+Console output capture is not reliable on Windows as Node.js there doesn't always flush buffers before exiting. Until this is fixed Windows users should use the Vagrantfile instead (see below). :bangbang:
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
@@ -163,6 +161,7 @@ Parse `grunt -h` output
 
 # History
 
+* 0.1.0 - Changed error behaviour:
 * 0.0.4 - NPM push.
 * 0.0.3 - Various construction work.
 * 0.0.2 - Solidifying and added parsing helper to extract tasks and aliases.

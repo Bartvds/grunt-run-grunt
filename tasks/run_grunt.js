@@ -62,11 +62,10 @@ module.exports = function (grunt) {
 		var warnIsCalled = false;
 		var warnFail = warnReal;
 
-		// beh
 		if (options.expectFail) {
 			warnFail = function () {
 				warnIsCalled = true;
-				arguments[0] = 'Warning: '.yellow + '<ignored> '.green + String(arguments[0]);
+				arguments[0] = '<ignored> '.yellow + String(arguments[0]);
 				warnFake.apply(null, arguments);
 			};
 		}
@@ -132,7 +131,7 @@ module.exports = function (grunt) {
 			runGruntfile(grunt, filePath, options.task, runOptions, function (err, result) {
 
 				if (!result) {
-					callback(err || 'no result for ' + filePath);
+					callback(err || new Error('no result for ' + filePath));
 				}
 				else {
 					var end = ' "' + filePath + '" (' + (result.duration) + 'ms)';
@@ -163,6 +162,7 @@ module.exports = function (grunt) {
 						grunt.log.writeln('-> failed '.red + res.options.target + ' @ "' + res.src + '"');
 					});
 					grunt.log.writeln('');
+
 					warnFail((lib.pluralise(failed.length, 'gruntfile') + ' failed').red + ' and ' + ('completed ' + passed.length).green + end);
 				}
 				else {
@@ -175,7 +175,6 @@ module.exports = function (grunt) {
 					}
 				}
 
-				// this is odd
 				if (options.expectFail) {
 					if (warnIsCalled) {
 						grunt.log.ok('ignoring expected fail');
@@ -184,7 +183,6 @@ module.exports = function (grunt) {
 						grunt.fail.warn('expected failure but got success');
 					}
 				}
-
 			}
 			done();
 		});

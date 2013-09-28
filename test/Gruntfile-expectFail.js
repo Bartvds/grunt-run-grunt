@@ -8,6 +8,7 @@ module.exports = function (grunt) {
 
 	// load run_grunt
 	grunt.loadTasks('./../tasks');
+	grunt.loadTasks('./test_tasks');
 
 	grunt.initConfig({
 		run_grunt: {
@@ -25,6 +26,6 @@ module.exports = function (grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['clean', 'run_grunt']);
+	grunt.registerTask('default', ['run_grunt']);
 
 };

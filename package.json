@@ -1,7 +1,7 @@
 {
   "name": "grunt-run-grunt",
   "description": "Grunt task to run grunt as child process. Gruntception!",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "homepage": "https://github.com/Bartvds/grunt-grunt-cli",
   "author": {
     "name": "Bart van der Schoor",
