@@ -2,7 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/Bartvds/grunt-run-grunt.png?branch=master)](http://travis-ci.org/Bartvds/grunt-run-grunt) [![Dependency Status](https://gemnasium.com/Bartvds/grunt-run-grunt.png)](https://gemnasium.com/Bartvds/grunt-run-grunt) [![NPM version](https://badge.fury.io/js/grunt-run-grunt.png)](http://badge.fury.io/js/grunt-run-grunt)
 
-> Grunt task to run grunt as child process. Gruntception!
+> Grunt task to run Gruntfiles in a child process. Gruntception!
 
 Console output capture is not reliable on Windows as Node.js there doesn't always flush buffers before exiting. Until this is fixed Windows users should use the Vagrantfile instead (see below). :bangbang:
 

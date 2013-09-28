@@ -159,7 +159,7 @@ module.exports = function (grunt) {
 
 				if (failed.length > 0) {
 					_.each(failed, function (res) {
-						grunt.log.writeln('-> failed '.red + res.options.target + ' @ "' + res.src + '"');
+						grunt.log.writeln('--> failed '.red + res.options.target + ' @ "' + res.src + '"');
 					});
 					grunt.log.writeln('');
 

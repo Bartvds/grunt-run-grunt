@@ -1,23 +1,23 @@
 {
   "name": "grunt-run-grunt",
-  "description": "Grunt task to run grunt as child process. Gruntception!",
+  "description": "Grunt task to run Gruntfiles in a child process. Gruntception!",
   "version": "0.1.0",
-  "homepage": "https://github.com/Bartvds/grunt-grunt-cli",
+  "homepage": "https://github.com/Bartvds/grunt-run-grunt",
   "author": {
     "name": "Bart van der Schoor",
     "url": "https://github.com/Bartvds"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Bartvds/grunt-grunt-cli"
+    "url": "https://github.com/Bartvds/grunt-run-grunt"
   },
   "bugs": {
-    "url": "https://github.com/Bartvds/grunt-grunt-cli/issues"
+    "url": "https://github.com/Bartvds/grunt-run-grunt/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/Bartvds/grunt-grunt-cli/blob/master/LICENSE-MIT"
+      "url": "https://github.com/Bartvds/grunt-run-grunt/blob/master/LICENSE-MIT"
     }
   ],
   "keywords": [
