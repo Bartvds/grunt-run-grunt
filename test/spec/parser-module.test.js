@@ -20,6 +20,7 @@ describe('parser-module', function () {
 			assert.isObject(result.alias, 'alias');
 
 			//console.log(JSON.stringify(result, null, 2));
+			grunt.file.write('test/tmp/' + subPath + '.json', JSON.stringify(result, null, 2));
 
 			assert.deepEqual(result, expected, 'result, expected');
 		});

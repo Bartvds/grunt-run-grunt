@@ -27,7 +27,9 @@ grunt.loadNpmTasks('grunt-run-grunt');
 
 Use the `run_grunt` task to spawn new processes that run `grunt-cli` and optionally do work on the result data. It will use the global `$ grunt` command, just like when you'd run grunt manually.
 
-Main use-case is testing your gruntfile or grunt-plugins, but it is also suited for creative use of gruntfiles and grunt-cli output. For example use it to verify the final output of various reporters and formatters. Alternately parse the output of the "$grunt --help" command and work with the list of tasks and aliases (without instrumenting the gruntfile in any way).
+Main use-case is testing your gruntfile or grunt-plugins, but it is also suited for creative use of gruntfiles and grunt-cli output. 
+
+For example use it to verify the final output of various reporters and formatters. Alternately parse the output of the "$grunt --help" command and work with the list of tasks and aliases (without instrumenting the gruntfile in any way).
 
 If you need something similar to run grunt in a production build environment or don't really care about the content of the cli output then you are probably looking for [grunt-hub](https://github.com/shama/grunt-hub) instead. If you need to run tasks from one Gruntfile concurrently use [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) or [grunt-parallel](https://github.com/iammerrick/grunt-parallel).
 
@@ -95,11 +97,14 @@ indentLog: '  |  ',
 // save raw output to file
 logFile: null,
 
+// modify env variables
+env: {},
+
 // apply an output parser (see below for values)
 parser: '',
 
 // how many parallel grunts to run
-concurrent: 4,
+concurrent: <number> cpu-cores,
 
 // expect at least this many files
 minimumFiles: 1,
@@ -115,7 +120,7 @@ debugCli: false,
 // save .bat and shellscripts
 writeShell: null,
 
-// experimental
+// don't fail
 expectFail: false
 ```
 
@@ -138,10 +143,13 @@ res,
 code,
 
 // used parameters
-src: 'Gruntfile.js',
+src: 'path/to/Gruntfile.js',
 cwd: 'string',
 tasks: [],
 options: {},
+
+//cleaned src
+gruntfile: 'Gruntfile.js',
 
 // timing
 start: Date.now(),

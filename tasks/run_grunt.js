@@ -37,9 +37,10 @@ var baseOptions = {
 	process: null,
 	minimumFiles: 1,
 	maximumFiles: 10,
-	concurrent: 4,
+	concurrent: require('os').cpus().length,
 	expectFail: false,
-	parser: null
+	parser: null,
+	env: {}
 };
 
 module.exports = function (grunt) {
@@ -137,7 +138,7 @@ module.exports = function (grunt) {
 					var end = ' "' + filePath + '" (' + (result.duration) + 'ms)';
 					if (result.fail) {
 						failed.push(result);
-						grunt.log.writeln(lib.nub + 'failed'.yellow + end);
+						grunt.log.writeln(lib.nub + 'failed' + end);
 					} else {
 						passed.push(result);
 						grunt.log.writeln(lib.nub + 'finished ' + end);

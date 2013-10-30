@@ -2,6 +2,8 @@
 
 module.exports = function (grunt) {
 
+	var util = require('util');
+
 	function dummy(scope) {
 		var task = scope.name + ':' + scope.target;
 
@@ -39,7 +41,7 @@ module.exports = function (grunt) {
 		grunt.log.writeln(task);
 
 		var options = scope.options({
-			data:''
+			data: ''
 		});
 		if (!options.path) {
 			grunt.fail.warn('-> missing path option');
@@ -54,6 +56,15 @@ module.exports = function (grunt) {
 		grunt.log.write(options.data);
 
 		grunt.log.writeln('write task: ' + task);
+		grunt.log.ok('done');
+	}
+
+	function logEnv(scope) {
+		var task = scope.name + ':' + scope.target;
+
+		grunt.log.writeln('options.env: ' + util.inspect(process.env));
+
+		grunt.log.writeln('env task: ' + task);
 		grunt.log.ok('done');
 	}
 
@@ -80,5 +91,8 @@ module.exports = function (grunt) {
 	});
 	grunt.registerMultiTask('fail_fatal', 'cli test "fail_fatal" task', function () {
 		fail(this, true);
+	});
+	grunt.registerMultiTask('env', 'cli test "env" task', function () {
+		logEnv(this);
 	});
 };

@@ -1,8 +1,11 @@
 {
-	"task": {
-		"dash-victor": "cli test \"dash-victor\" task",
-		"write_file": "cli test \"write_file\" task",
-		"fail_warn": "cli test \"fail_warn\" task"
-	},
-	"alias": {}
+  "task": {
+    "dash-victor": "cli test \"dash-victor\" task",
+    "dummy_tango": "cli test \"dummy_tango\" task",
+    "write_file": "cli test \"write_file\" task",
+    "echo": "cli test \"echo\" task",
+    "fail_warn": "cli test \"fail_warn\" task",
+    "fail_fatal": "cli test \"fail_fatal\" task"
+  },
+  "alias": {}
 }
