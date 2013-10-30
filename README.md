@@ -149,7 +149,7 @@ tasks: [],
 options: {},
 
 //cleaned src
-gruntfile: 'Gruntfile.js',
+gruntfile: 'Gruntfile',
 
 // timing
 start: Date.now(),
@@ -169,7 +169,8 @@ Parse `grunt -h` output
 
 # History
 
-* 0.1.0 - Changed error behaviour:
+* 0.1.2 - Added env option
+* 0.1.1 - Changed error behaviour.
 * 0.0.4 - NPM push.
 * 0.0.3 - Various construction work.
 * 0.0.2 - Solidifying and added parsing helper to extract tasks and aliases.
