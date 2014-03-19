@@ -50,5 +50,7 @@
   "peerDependencies": {
     "grunt": "~0.4.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash": "2.4.1"
+  }
 }

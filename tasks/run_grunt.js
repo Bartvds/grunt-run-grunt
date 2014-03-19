@@ -7,6 +7,7 @@
 'use strict';
 
 var lib = require('./../lib/lib');
+var _ = require('lodash');
 
 var runGruntfile = require('./../lib/runGruntfile').runGruntfile;
 
@@ -44,8 +45,6 @@ var baseOptions = {
 };
 
 module.exports = function (grunt) {
-
-	var _ = grunt.util._;
 
 	// experimental inversions
 	var warnReal = grunt.fail.warn;
