@@ -7,7 +7,8 @@
       "echo": "cli test \"echo\" task",
       "fail_warn": "cli test \"fail_warn\" task",
       "fail_fatal": "cli test \"fail_fatal\" task",
-      "env": "cli test \"env\" task"
+      "env": "cli test \"env\" task",
+      "gruntOptions": "cli test \"gruntOptions\" task"
     },
     "alias": {
       "default": [

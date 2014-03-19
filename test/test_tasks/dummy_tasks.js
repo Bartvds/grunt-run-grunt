@@ -68,6 +68,15 @@ module.exports = function (grunt) {
 		grunt.log.ok('done');
 	}
 
+	function logGruntOptions(scope) {
+		var task = scope.name + ':' + scope.target;
+
+		grunt.log.writeln('options.gruntOptions.dummyOption: ' + grunt.option('dummyOption'));
+
+		grunt.log.writeln('env task: ' + task);
+		grunt.log.ok('done');
+	}
+
 	grunt.registerMultiTask('dash-victor', 'cli test "dash-victor" task', function () {
 		dummy(this);
 	});
@@ -94,5 +103,8 @@ module.exports = function (grunt) {
 	});
 	grunt.registerMultiTask('env', 'cli test "env" task', function () {
 		logEnv(this);
+	});
+	grunt.registerMultiTask('gruntOptions', 'cli test "gruntOptions" task', function () {
+		logGruntOptions(this);
 	});
 };
