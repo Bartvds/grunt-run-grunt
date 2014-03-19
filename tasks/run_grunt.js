@@ -7,6 +7,7 @@
 'use strict';
 
 var lib = require('./../lib/lib');
+var _ = require('lodash');
 
 var runGruntfile = require('./../lib/runGruntfile').runGruntfile;
 
@@ -40,12 +41,11 @@ var baseOptions = {
 	concurrent: require('os').cpus().length,
 	expectFail: false,
 	parser: null,
-	env: {}
+	env: {},
+	gruntOptions: {}
 };
 
 module.exports = function (grunt) {
-
-	var _ = grunt.util._;
 
 	// experimental inversions
 	var warnReal = grunt.fail.warn;
@@ -125,6 +125,9 @@ module.exports = function (grunt) {
 					}
 				}
 			});
+
+			//import grunt options
+			_.assign(runOptions.args, options.gruntOptions);
 
 			grunt.log.writeln(lib.nub + 'starting ' + ' "' + filePath + '"');
 

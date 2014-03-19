@@ -122,6 +122,10 @@ writeShell: null,
 
 // don't fail
 expectFail: false
+
+// pass options that will be available in the executed gruntfile with grunt.option('myOption')
+// NOTE: will overwrite cli options with the same name!
+gruntOptions: {}
 ```
 
 #### Process result object
