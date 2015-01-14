@@ -126,6 +126,11 @@ expectFail: false
 // pass options that will be available in the executed gruntfile with grunt.option('myOption')
 // NOTE: will overwrite cli options with the same name!
 gruntOptions: {}
+
+// define a custom handler for stdout and stderr
+stdout: function(data) { console.log(data); }
+stderr: function(data) { console.log(data); }
+
 ```
 
 #### Process result object

@@ -20,6 +20,7 @@
         "dummy_tango:tango_one",
         "dummy_tango:tango-two",
         "echo:echo",
+        "echo:echo_stderr",
         "dash-victor:victor_one",
         "dash-victor:victor-two"
       ],
@@ -34,6 +35,7 @@
       "multi": [
         "echo:before",
         "echo:echo",
+        "echo:echo_stderr",
         "echo:after"
       ]
     }

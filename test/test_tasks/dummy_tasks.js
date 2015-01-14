@@ -15,9 +15,14 @@ module.exports = function (grunt) {
 		var task = scope.name + ':' + scope.target;
 
 		var options = scope.options({
-			echo: 'echo echo'
+			echo: 'echo echo',
+			stream: 'stdout'
 		});
-		grunt.log.writeln(options.echo);
+		if (options.stream === 'stdout') {
+			grunt.log.writeln(options.echo);
+		} else if (options.stream === 'stderr') {
+			process.stderr.write(options.echo + '\n');
+		}
 
 		grunt.log.writeln('echo task: ' + task);
 		grunt.log.ok('done');
