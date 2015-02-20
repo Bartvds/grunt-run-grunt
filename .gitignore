@@ -9,3 +9,5 @@ tmp/
 
 /test/tmp
 /test/shell
+
+/cookbooks/*
