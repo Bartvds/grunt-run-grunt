@@ -8,6 +8,7 @@
 
 var lib = require('./../lib/lib');
 var _ = require('lodash');
+var async = require('async');
 
 var runGruntfile = require('./../lib/runGruntfile').runGruntfile;
 
@@ -100,7 +101,7 @@ module.exports = function (grunt) {
 		}
 
 		// loop gruntfiles
-		grunt.util.async.forEachLimit(files, options.concurrent, function (filePath, callback) {
+		async.forEachLimit(files, options.concurrent, function (filePath, callback) {
 			counter++;
 
 			var runOptions = {
