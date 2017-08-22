@@ -1,4 +1,4 @@
-Grunt: The JavaScript Task Runner (v0.4.1)
+Grunt: The JavaScript Task Runner (v1.0.1)
 
 Usage
  grunt [options] [task [task ...]]

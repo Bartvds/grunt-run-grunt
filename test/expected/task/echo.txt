@@ -3,4 +3,4 @@ echo
 echo task: echo:echo
 >> done
 
-Done, without errors.
+Done.

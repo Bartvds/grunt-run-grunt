@@ -1,5 +1,6 @@
 /node_modules
 npm-debug.log
+package-lock.json
 
 /*.tgz
 /.idea
@@ -9,3 +10,6 @@ tmp/
 
 /test/tmp
 /test/shell
+
+*.sublime-project
+*.sublime-workspace

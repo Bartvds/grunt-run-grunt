@@ -18,3 +18,7 @@ Gruntfile.js
 /node_modules
 /test
 /*.tgz
+package-lock.json
+
+*.sublime-project
+*.sublime-workspace
