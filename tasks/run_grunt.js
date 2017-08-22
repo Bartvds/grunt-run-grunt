@@ -1,6 +1,6 @@
 /*
  * grunt-run-grunt * https://github.com/Bartvds/grunt-run-grunt *
- * Copyright (c) 2013 Bart van der Schoor
+ * Copyright (c) 2017 Bart van der Schoor
  * Licensed under the MIT license.
  */
 

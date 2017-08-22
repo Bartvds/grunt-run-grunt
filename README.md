@@ -70,7 +70,7 @@ grunt.initConfig({
 
 #### grunt-cli options 
 
-```
+```js
 help: boolean,
 base: 'string',
 'no-color': boolean,
@@ -85,7 +85,8 @@ version: boolean
 ```
 
 #### Custom options
-```
+
+```js
 // pass the tasks to run: either a string or array-of-strings
 task: ['clean', 'jshint:strictTarget', 'mocha:subTarget']
 
@@ -136,7 +137,7 @@ gruntOptions: {}
 
 #### Process result object
 
-```
+```js
 // status, can override
 fail: false,
 output: 'string',
