@@ -12,5 +12,4 @@ package-lock.json
 
 *.tgz
 *.lock
-*.sublime-project
-*.sublime-workspace
+*.sublime-*

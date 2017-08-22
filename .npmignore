@@ -24,6 +24,5 @@ npm-debug.log
 Vagrantfile
 
 *.tgz
-*.sublime-project
-*.sublime-workspace
+*.sublime-*
 *.lock
