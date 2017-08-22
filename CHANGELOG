@@ -1,0 +1,39 @@
+v0.2.0
+  date: 22-08-2017
+  changes:
+    - Support grunt 1.0.1
+
+v0.1.4
+  date: 19-03-2014
+  changes:
+    - Add gruntOptions feature to enable passing options to the child gruntfile
+
+v0.1.3
+  date: 22-11-2013
+  changes:
+    - Support grunt 0.4.2
+
+v0.1.2
+  date: 30-10-2013
+  changes:
+    - Added env option
+
+v0.1.1
+  date: 29-09-2013
+  changes:
+    - Changed error behaviour.
+
+v0.0.4
+  date: 28-08-2013
+  changes:
+    - NPM push.
+
+v0.0.3
+  date: N/A
+  changes:
+    - Various construction work.
+
+v0.0.2
+  date: N/A
+  changes:
+    - Solidifying and added parsing helper to extract tasks and aliases.

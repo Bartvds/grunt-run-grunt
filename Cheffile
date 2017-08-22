@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site 'https://supermarket.getchef.com/api/v1'
+
+cookbook 'git', '~> 6.1.0'
+cookbook 'nvm', '~> 0.1.7'

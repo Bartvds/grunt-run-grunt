@@ -1,15 +1,16 @@
-/node_modules
-npm-debug.log
-package-lock.json
-
-/*.tgz
-/.idea
-/.vagrant
-
-tmp/
-
+.idea
+.nyc_output
+.vagrant
+cookbooks
+coverage
+node_modules
+/tmp
 /test/tmp
 /test/shell
 
+package-lock.json
+
+*.tgz
+*.lock
 *.sublime-project
 *.sublime-workspace
