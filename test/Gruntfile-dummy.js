@@ -31,6 +31,12 @@ module.exports = function (grunt) {
 					echo: 'after: ' + path.basename(__filename)
 				}
 			},
+			echo_stderr: {
+				options: {
+					echo: 'echo stderr',
+					stream: 'stderr'
+				}
+			},
 			echo: {
 				options: {
 					echo: 'echo'
@@ -45,6 +51,7 @@ module.exports = function (grunt) {
 		'dummy_tango:tango_one',
 		'dummy_tango:tango-two',
 		'echo:echo',
+		'echo:echo_stderr',
 		'dash-victor:victor_one',
 		'dash-victor:victor-two'
 	]);
@@ -52,5 +59,5 @@ module.exports = function (grunt) {
 	grunt.registerTask('tangos', ['dummy_tango:tango_one', 'dummy_tango:tango_two']);
 	grunt.registerTask('victors', ['dash-victor:victor_one', 'dash-victor:victor-two']);
 
-	grunt.registerTask('multi', ['echo:before', 'echo:echo', 'echo:after']);
+	grunt.registerTask('multi', ['echo:before', 'echo:echo', 'echo:echo_stderr', 'echo:after']);
 };

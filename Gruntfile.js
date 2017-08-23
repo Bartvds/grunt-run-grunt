@@ -66,7 +66,8 @@ module.exports = function (grunt) {
 					// writeShell: 'test/shell/',
 
 					// keep this updated
-					minimumFiles: 6
+					minimumFiles: 6,
+					maximumFiles: 11
 				},
 				src: ['test/Gruntfile*.js']
 			},
