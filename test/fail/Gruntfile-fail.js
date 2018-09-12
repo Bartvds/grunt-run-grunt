@@ -4,22 +4,22 @@
 
 module.exports = function (grunt) {
 
-	// load run_grunt
-	grunt.loadTasks('./../../tasks');
+  // load run_grunt
+  grunt.loadTasks('./../../tasks');
 
-	grunt.initConfig({
-		fail_warn: {
-			options: {
+  grunt.initConfig({
+    fail_warn: {
+      options: {
 
-			}
-		},
-		fail_fatal: {
-			options: {
+      }
+    },
+    fail_fatal: {
+      options: {
 
-			}
-		}
-	});
+      }
+    }
+  });
 
-	grunt.registerTask('default', ['fail_warn']);
+  grunt.registerTask('default', ['fail_warn']);
 
 };

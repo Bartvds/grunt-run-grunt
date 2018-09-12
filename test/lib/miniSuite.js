@@ -8,108 +8,108 @@ var assert = require('chai').assert;
 
 // actual Assertion
 function assertResult(res) {
-	assert.isObject(res, 'assertResult: result');
-	assert.isBoolean(res.fail, 'assertResult: res.fail');
-	assert.isString(res.message, 'assertResult: res.message');
+  assert.isObject(res, 'assertResult: result');
+  assert.isBoolean(res.fail, 'assertResult: res.fail');
+  assert.isString(res.message, 'assertResult: res.message');
 
-	assert(!res.fail, res.log);
+  assert(!res.fail, res.log);
 }
 
 // subroutine
 function reportSuiteResult(res) {
-	assert.isObject(res, 'reportSuiteResult:result');
+  assert.isObject(res, 'reportSuiteResult:result');
 
-	var log = [];
-	//log.push(res.header);
+  var log = [];
+  //log.push(res.header);
 
-	var summary = '';
-	var start = '"' + res.name + '"' + ' ';
+  var summary = '';
+  var start = '"' + res.name + '"' + ' ';
 
-	var end = '';
+  var end = '';
 
-	if (!res.fail) {
-		summary = start + 'passed ' + res.all.length + ' / ' + res.all.length + end + ' in ' + '"' + res.label + '"';
-		log.push(summary);
-	}
-	else {
-		summary = start + 'failed ' + res.failed.length + ' / ' + res.all.length + end + ' in ' + '"' + res.label + '"';
-		log.push(summary);
+  if (!res.fail) {
+    summary = start + 'passed ' + res.all.length + ' / ' + res.all.length + end + ' in ' + '"' + res.label + '"';
+    log.push(summary);
+  }
+  else {
+    summary = start + 'failed ' + res.failed.length + ' / ' + res.all.length + end + ' in ' + '"' + res.label + '"';
+    log.push(summary);
 
-		res.failed.forEach(function (res) {
-			log.push('- ' + res.name + '\n   ' + (res.err.message ? res.err.message : res.err));
-		});
-	}
+    res.failed.forEach(function (res) {
+      log.push('- ' + res.name + '\n   ' + (res.err.message ? res.err.message : res.err));
+    });
+  }
 
-	// override
-	res.log = log.join('\n');
-	res.message = summary;
-	res.report(res);
+  // override
+  res.log = log.join('\n');
+  res.message = summary;
+  res.report(res);
 }
 
 function hasOwnProp(obj, name) {
-	return Object.prototype.hasOwnProperty.call(obj, name);
+  return Object.prototype.hasOwnProperty.call(obj, name);
 }
 
 /*
-	{
-		"label" : function(topic, assert){
-			assert.ok(topic, 'top ok');
-			assert.ok(topic.prop, 'top.prop ok');
-		}
-	}
+  {
+    "label" : function(topic, assert){
+      assert.ok(topic, 'top ok');
+      assert.ok(topic.prop, 'top.prop ok');
+    }
+  }
 */
 function getSuite(testName, tests) {
 
-	var func = function (caseLabel, topic, report) {
+  var func = function (caseLabel, topic, report) {
 
-		var res = {
-			name: testName,
-			tests: tests,
-			assertion: function () {
-				assertResult(res);
-			},
-			// default to throwing
-			report: report || function () {
-				res.assertion();
-			},
-			label: caseLabel,
-			topic: topic,
-			failed: [],
-			all: [],
-			log: [],
-			fail: false
-		};
+    var res = {
+      name: testName,
+      tests: tests,
+      assertion: function () {
+        assertResult(res);
+      },
+      // default to throwing
+      report: report || function () {
+        res.assertion();
+      },
+      label: caseLabel,
+      topic: topic,
+      failed: [],
+      all: [],
+      log: [],
+      fail: false
+    };
 
-		// lazy loop
-		for (var name in tests) {
-			if (!hasOwnProp(tests, name)) {
-				continue;
-			}
-			var testCase = tests[name];
-			var item = {
-				name: name,
-				err: null,
-				call: testCase
-			};
+    // lazy loop
+    for (var name in tests) {
+      if (!hasOwnProp(tests, name)) {
+        continue;
+      }
+      var testCase = tests[name];
+      var item = {
+        name: name,
+        err: null,
+        call: testCase
+      };
 
-			try {
-				testCase.call(null, topic, assert);
-			}
-			catch (e) {
-				item.err = e;
-				res.failed.push(item);
-			}
-			res.all.push(item);
-		}
+      try {
+        testCase.call(null, topic, assert);
+      }
+      catch (e) {
+        item.err = e;
+        res.failed.push(item);
+      }
+      res.all.push(item);
+    }
 
-		res.fail = res.failed.length > 0;
+    res.fail = res.failed.length > 0;
 
-		reportSuiteResult(res);
-	};
-	func.name = testName;
-	return func;
+    reportSuiteResult(res);
+  };
+  func.name = testName;
+  return func;
 }
 
 module.exports = {
-	getSuite: getSuite
+  getSuite: getSuite
 };

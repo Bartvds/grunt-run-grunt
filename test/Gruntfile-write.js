@@ -1,39 +1,38 @@
 'use strict';
 
-// var helper = require('./helper');
-var path = require('path');
+const path = require('path');
 
 module.exports = function (grunt) {
 
-	grunt.loadTasks('../node_modules/grunt-contrib-clean/tasks');
+  grunt.loadTasks('../node_modules/grunt-contrib-clean/tasks');
 
-	// load test tasks
-	grunt.loadTasks('./test_tasks');
+  // load test tasks
+  grunt.loadTasks('./test_tasks');
 
-	grunt.initConfig({
-		clean: {
-			tests: ['tmp/write/**/*']
-		},
-		write_file: {
-			one: {
-				options: {
-					path: 'tmp/dummy/write_file_one.txt'
-				}
-			}
-		},
-		echo: {
-			before: {
-				options: {
-					echo: 'before: ' + path.basename(__filename)
-				}
-			},
-			after: {
-				options: {
-					echo: 'after: ' + path.basename(__filename)
-				}
-			}
-		}
-	});
+  grunt.initConfig({
+    clean: {
+      tests: ['tmp/write/**/*']
+    },
+    write_file: {
+      one: {
+        options: {
+          path: 'tmp/dummy/write_file_one.txt'
+        }
+      }
+    },
+    echo: {
+      before: {
+        options: {
+          echo: 'before: ' + path.basename(__filename)
+        }
+      },
+      after: {
+        options: {
+          echo: 'after: ' + path.basename(__filename)
+        }
+      }
+    }
+  });
 
-	grunt.registerTask('default', ['clean', 'echo:before', 'write_file', 'echo:after']);
+  grunt.registerTask('default', ['clean', 'echo:before', 'write_file', 'echo:after']);
 };

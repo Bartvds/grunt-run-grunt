@@ -1,30 +1,30 @@
 {
-	"task": {},
-	"alias": {
-		"default": [
-			"echo:before",
-			"dummies",
-			"echo:after"
-		],
-		"dummies": [
-			"dummy_tango:tango_one",
-			"dummy_tango:tango-two",
-			"echo:echo",
-			"dash-victor:victor_one",
-			"dash-victor:victor-two"
-		],
-		"tangos": [
-			"dummy_tango:tango_one",
-			"dummy_tango:tango_two"
-		],
-		"victors": [
-			"dash-victor:victor_one",
-			"dash-victor:victor-two"
-		],
-		"multi": [
-			"echo:before",
-			"echo:echo",
-			"echo:after"
-		]
-	}
+  "task": {},
+  "alias": {
+    "default": [
+      "echo:before",
+      "dummies",
+      "echo:after"
+    ],
+    "dummies": [
+      "dummy_tango:tango_one",
+      "dummy_tango:tango-two",
+      "echo:echo",
+      "dash-victor:victor_one",
+      "dash-victor:victor-two"
+    ],
+    "tangos": [
+      "dummy_tango:tango_one",
+      "dummy_tango:tango_two"
+    ],
+    "victors": [
+      "dash-victor:victor_one",
+      "dash-victor:victor-two"
+    ],
+    "multi": [
+      "echo:before",
+      "echo:echo",
+      "echo:after"
+    ]
+  }
 }

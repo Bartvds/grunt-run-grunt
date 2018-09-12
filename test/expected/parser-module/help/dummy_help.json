@@ -1,37 +1,37 @@
 {
-	"task": {
-		"dash-victor": "cli test \"dash-victor\" task",
-		"dummy_tango": "cli test \"dummy_tango\" task",
-		"write_file": "cli test \"write_file\" task",
-		"echo": "cli test \"echo\" task",
-		"fail_warn": "cli test \"fail_warn\" task",
-		"fail_fatal": "cli test \"fail_fatal\" task"
-	},
-	"alias": {
-		"default": [
-			"echo:before",
-			"dummies",
-			"echo:after"
-		],
-		"dummies": [
-			"dummy_tango:tango_one",
-			"dummy_tango:tango-two",
-			"echo:echo",
-			"dash-victor:victor_one",
-			"dash-victor:victor-two"
-		],
-		"tangos": [
-			"dummy_tango:tango_one",
-			"dummy_tango:tango_two"
-		],
-		"victors": [
-			"dash-victor:victor_one",
-			"dash-victor:victor-two"
-		],
-		"multi": [
-			"echo:before",
-			"echo:echo",
-			"echo:after"
-		]
-	}
+  "task": {
+    "dash-victor": "cli test \"dash-victor\" task",
+    "dummy_tango": "cli test \"dummy_tango\" task",
+    "write_file": "cli test \"write_file\" task",
+    "echo": "cli test \"echo\" task",
+    "fail_warn": "cli test \"fail_warn\" task",
+    "fail_fatal": "cli test \"fail_fatal\" task"
+  },
+  "alias": {
+    "default": [
+      "echo:before",
+      "dummies",
+      "echo:after"
+    ],
+    "dummies": [
+      "dummy_tango:tango_one",
+      "dummy_tango:tango-two",
+      "echo:echo",
+      "dash-victor:victor_one",
+      "dash-victor:victor-two"
+    ],
+    "tangos": [
+      "dummy_tango:tango_one",
+      "dummy_tango:tango_two"
+    ],
+    "victors": [
+      "dash-victor:victor_one",
+      "dash-victor:victor-two"
+    ],
+    "multi": [
+      "echo:before",
+      "echo:echo",
+      "echo:after"
+    ]
+  }
 }
