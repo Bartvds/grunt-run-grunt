@@ -2,10 +2,10 @@ const util = require('util');
 const miniSuite = require('./lib/miniSuite');
 
 function toUnixNewline(str) {
-  return str.replace(/\r\n|\r/g, "\n");
+  return str.replace(/\r\n|\r/g, '\n');
 }
 function toWindowNewLine(str) {
-  return str.replace(/\r\n|\r|\n/g, "\r\n");
+  return str.replace(/\r\n|\r|\n/g, '\r\n');
 }
 function inspect(value, depth){
   console.log(util.inspect(value, false, depth || 10));

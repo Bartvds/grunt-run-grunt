@@ -30,7 +30,7 @@ module.exports = function (grunt) {
               grunt.log.fail('missing env in returned options');
               result.fail = true;
             }
-            if (!result.options.env['GRUNT_ENV_TEST_FLAG']) {
+            if (!result.options.env.GRUNT_ENV_TEST_FLAG) {
               grunt.log.fail('missing env test flag in returned options');
               result.fail = true;
             }

@@ -13,11 +13,11 @@ module.exports = function (grunt) {
     },
     dummy_tango: {
       tango_one: {},
-      "tango-two": {}
+      'tango-two': {}
     },
-    "dash-victor": {
+    'dash-victor': {
       victor_one: {},
-      "victor-two": {}
+      'victor-two': {}
     },
     echo: {
       before: {

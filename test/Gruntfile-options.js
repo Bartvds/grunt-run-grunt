@@ -30,7 +30,7 @@ module.exports = function (grunt) {
               grunt.log.fail('missing gruntOptions in returned options');
               result.fail = true;
             }
-            if (!result.options.gruntOptions['dummyOption']) {
+            if (!result.options.gruntOptions.dummyOption) {
               grunt.log.fail('missing gruntOptions dummyOption in returned options');
               result.fail = true;
             }

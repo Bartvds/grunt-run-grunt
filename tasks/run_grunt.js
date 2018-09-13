@@ -1,19 +1,18 @@
 /*
  * grunt-run-grunt * https://github.com/Bartvds/grunt-run-grunt *
- * Copyright (c) 2017 Bart van der Schoor
+ * Copyright (c) 2013-2018 Bart van der Schoor
  * Licensed under the MIT license.
  */
 
 'use strict';
 
-var lib = require('./../lib/lib');
-var _ = require('lodash');
-var async = require('async');
-
-var runGruntfile = require('./../lib/runGruntfile').runGruntfile;
+const lib = require('./../lib/lib');
+const _ = require('lodash');
+const Async = require('async');
+const runGruntfile = require('./../lib/runGruntfile').runGruntfile;
 
 // with flag type
-var cliParams = {
+const cliParams = {
   help: 'flag',
   base: 'string',
   'no-color': 'flag',
@@ -28,7 +27,7 @@ var cliParams = {
 };
 
 // with default values
-var baseOptions = {
+const baseOptions = {
   cwd: null,
   log: true,
   logFile: null,
@@ -49,8 +48,8 @@ var baseOptions = {
 module.exports = function (grunt) {
 
   // experimental inversions
-  var warnReal = grunt.fail.warn;
-  var warnFake = function () {
+  const warnReal = grunt.fail.warn;
+  const warnFake = function () {
     arguments[0] = 'Warning '.cyan + arguments[0];
     grunt.log.writeln.apply(null, arguments);
   };
@@ -58,11 +57,11 @@ module.exports = function (grunt) {
   // main task
   grunt.registerMultiTask('run_grunt', 'Run grunt-cli from within grunt.', function () {
 
-    var options = this.options(baseOptions);
+    const options = this.options(baseOptions);
     options.concurrent = Math.max(1, options.concurrent);
 
-    var warnIsCalled = false;
-    var warnFail = warnReal;
+    let warnIsCalled = false;
+    let warnFail = warnReal;
 
     if (options.expectFail) {
       warnFail = function () {
@@ -72,16 +71,16 @@ module.exports = function (grunt) {
       };
     }
 
-    //var self = this;
-    var done = this.async();
-    var self = this;
-    var failed = [];
-    var passed = [];
-    var start = Date.now();
-    var counter = 0;
+    const done = this.async();
+    const start = Date.now();
 
-    var files = [];
-    _.forEach(this.filesSrc, function (filePath) {
+    const files = [];
+    const failed = [];
+    const passed = [];
+
+    let counter = 0;
+
+    _.forEach(this.filesSrc, (filePath) => {
       if (!grunt.file.exists(filePath)) {
         grunt.log.writeln(lib.nub + 'not found "' + filePath + '"'.yellow);
         return false;
@@ -94,6 +93,7 @@ module.exports = function (grunt) {
       done();
       return;
     }
+
     if (_.isNumber(options.maximumFiles) && options.maximumFiles > 0 && files.length > options.maximumFiles) {
       grunt.fail.warn('expected at most ' + lib.pluralise(options.maximumFiles, 'gruntfile') + ' but ' + ('found ' + files.length).red);
       done();
@@ -101,22 +101,22 @@ module.exports = function (grunt) {
     }
 
     // loop gruntfiles
-    async.forEachLimit(files, options.concurrent, function (filePath, callback) {
+    Async.forEachLimit(files, options.concurrent, (filePath, callback) => {
       counter++;
 
-      var runOptions = {
-        target: self.target,
+      const runOptions = {
+        target: this.target,
         task: options.task,
         args: {}
       };
 
       // loop default keys but read from options
-      _.each(baseOptions, function (value, key) {
+      _.each(baseOptions, (value, key) => {
         runOptions[key] = options[key];
       });
 
       // import grunt-cli params
-      _.each(cliParams, function (value, key) {
+      _.each(cliParams, (value, key) => {
         if (!_.isUndefined(options[key])) {
           if (cliParams[key] === 'flag') {
             runOptions.args[key] = true;
@@ -133,37 +133,34 @@ module.exports = function (grunt) {
       grunt.log.writeln(lib.nub + 'starting ' + ' "' + filePath + '"');
 
       // run it
-      runGruntfile(grunt, filePath, options.task, runOptions, function (err, result) {
+      runGruntfile(grunt, filePath, options.task, runOptions, (err, result) => {
 
         if (!result) {
           callback(err || new Error('no result for ' + filePath));
         }
         else {
-          var end = ' "' + filePath + '" (' + (result.duration) + 'ms)';
+          const end = ' "' + filePath + '" (' + (result.duration) + 'ms)';
           if (result.fail) {
             failed.push(result);
             grunt.log.writeln(lib.nub + 'failed' + end);
-          } else {
+          }
+          else {
             passed.push(result);
             grunt.log.writeln(lib.nub + 'finished ' + end);
           }
           callback(err, result);
         }
       });
-
-    }, function (err) {
+    }, (err) => {
       if (err) {
-        console.dir(err);
         grunt.fail.fatal(err);
       }
       else {
         // fancy report
-        var end = ' (' + (Date.now() - start) + 'ms)\n';
-
-        //var total = passed.length + failed.length;
+        const end = ' (' + (Date.now() - start) + 'ms)\n';
 
         if (failed.length > 0) {
-          _.each(failed, function (res) {
+          _.each(failed, (res) => {
             grunt.log.writeln('--> failed '.red + res.options.target + ' @ "' + res.src + '"');
           });
           grunt.log.writeln('');
@@ -189,6 +186,7 @@ module.exports = function (grunt) {
           }
         }
       }
+
       done();
     });
   });
