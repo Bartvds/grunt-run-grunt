@@ -31,7 +31,7 @@ grunt.loadNpmTasks('grunt-run-grunt');
 
 > *"Yo dawg! I herd you like grunt, so I put some grunt in your grunt so you can grunt while you grunt."* :laughing:
 
-Use the `run_grunt` task to spawn new processes that run `grunt-cli` and optionally do work on the result data. It will use the global `$ grunt` command, just like when you'd run grunt manually.
+Use the `run_grunt` task to spawn new processes that run `grunt-cli` and optionally do work on the result data. It will use the global `$ grunt` command by default, just like when you'd run grunt manually. To use custom path for specify `gruntCli` option.
 
 Main use-case is testing your gruntfile or grunt-plugins, but it is also suited for creative use of gruntfiles and grunt-cli output. 
 
