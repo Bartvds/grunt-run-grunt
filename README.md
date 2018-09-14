@@ -209,6 +209,6 @@ $ vagrant up
 
 ## License
 
-Copyright (c) 2017 Bart van der Schoor
+Copyright (c) 2013-2018 Bart van der Schoor
 
 Licensed under the MIT license.

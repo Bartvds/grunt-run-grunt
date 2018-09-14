@@ -1,8 +1,5 @@
 .idea
-.librarian
 .nyc_output
-.vagrant
-cookbooks
 coverage
 docs
 node_modules
@@ -16,12 +13,9 @@ tmp
 .npmignore
 .rvmrc
 .travis.yml
-Gemfile
-Cheffile
 Gruntfile.js
 package-lock.json
 npm-debug.log
-Vagrantfile
 
 *.tgz
 *.sublime-*
