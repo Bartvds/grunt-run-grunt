@@ -1,15 +1,19 @@
-var assert = require('chai').assert;
-var helper = require('../helper');
-var grunt = require('grunt');
+'use strict';
+
+const assert = require('chai').assert;
+const helper = require('../helper');
+const grunt = require('grunt');
 
 // chai-fs needs this
 function fileEqual(normalised, actualName, expectedName) {
-  var actual = grunt.file.read('test/tmp/' + actualName);
-  var expected = grunt.file.read('test/expected/' + expectedName);
+  let actual = grunt.file.read('test/tmp/' + actualName);
+  let expected = grunt.file.read('test/expected/' + expectedName);
+
   if (normalised) {
     actual = helper.toUnixNewline(actual);
     expected = helper.toUnixNewline(expected);
   }
+
   assert.ok(actual, 'actual should be ok: ' + actualName);
   assert.ok(expected, 'expected should be ok: ' + expectedName);
 
@@ -17,14 +21,15 @@ function fileEqual(normalised, actualName, expectedName) {
 }
 
 function testFileEqualPair(normalised, subPath) {
-  it(subPath, function () {
+  it(subPath, () => {
     fileEqual(normalised, subPath, subPath);
   });
 }
 
 function fileEqualJSON(actualName, expectedName) {
-  var actual = grunt.file.readJSON('test/tmp/' + actualName);
-  var expected = grunt.file.readJSON('test/expected/' + expectedName);
+  const actual = grunt.file.readJSON('test/tmp/' + actualName);
+  const expected = grunt.file.readJSON('test/expected/' + expectedName);
+
   assert.ok(actual, 'actual should be ok: ' + actualName);
   assert.ok(expected, 'expected should be ok: ' + expectedName);
 
@@ -32,15 +37,13 @@ function fileEqualJSON(actualName, expectedName) {
 }
 
 function testFileEqualJSONPair(subPath) {
-  it(subPath, function () {
+  it(subPath, () => {
     fileEqualJSON(subPath, subPath);
   });
 }
 
-describe('grunt-run-grunt', function () {
-
-  describe('task output', function () {
-
+describe('grunt-run-grunt', () => {
+  describe('task output', () => {
     testFileEqualPair(true, 'dummy/write_file_one.txt');
 
     testFileEqualPair(true, 'logFile/basic.txt');
@@ -50,9 +53,7 @@ describe('grunt-run-grunt', function () {
     testFileEqualPair(true, 'process/replace.txt');
   });
 
-  describe('json equality', function () {
+  describe('json equality', () => {
     testFileEqualJSONPair('parser/dummy_help.json');
   });
 });
-
-

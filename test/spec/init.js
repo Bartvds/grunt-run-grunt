@@ -1,3 +1,5 @@
+'use strict';
+
 const mkdirp = require('mkdirp');
 const grunt = require('grunt');
 const chai = require('chai');
@@ -23,7 +25,7 @@ describe('grunt-run-grunt', () => {
   });
 
   it('module main is linked in package.json', () => {
-    var pkg = grunt.file.readJSON('package.json');
+    const pkg = grunt.file.readJSON('package.json');
     assert.isObject(pkg, 'pkg');
 
     assert.property(pkg, 'main', 'pkg.main');

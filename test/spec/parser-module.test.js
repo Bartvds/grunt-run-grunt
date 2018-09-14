@@ -1,19 +1,20 @@
-var assert = require('chai').assert;
-var grunt = require('grunt');
-var parsers = require('../../lib/parsers');
+'use strict';
 
+const assert = require('chai').assert;
+const grunt = require('grunt');
+const parsers = require('../../lib/parsers');
 
-describe('parser-module', function () {
+describe('parser-module', () => {
 
   function testParse(subPath) {
-    it(subPath, function () {
-      var input = grunt.file.read('test/fixtures/' + subPath + '.txt');
-      var expected = grunt.file.readJSON('test/expected/' + subPath + '.json');
+    it(subPath, () => {
+      const input = grunt.file.read('test/fixtures/' + subPath + '.txt');
+      const expected = grunt.file.readJSON('test/expected/' + subPath + '.json');
 
       assert.isString(input, 'input');
       assert.isObject(expected, 'expected');
 
-      var result = parsers.parseHelp(input);
+      const result = parsers.parseHelp(input);
 
       assert.isObject(result, 'result');
       assert.isObject(result.task, 'task');
@@ -26,12 +27,12 @@ describe('parser-module', function () {
     });
   }
 
-  describe('parseHelp', function () {
-    it('should exist', function () {
+  describe('parseHelp', () => {
+    it('should exist', () => {
       assert.isFunction(parsers.parseHelp, 'parsers.parseHelp');
     });
 
-    describe('should parse', function () {
+    describe('should parse', () => {
       testParse('parser-module/help/dummy_help');
       testParse('parser-module/help/dummy_help-alias_only');
       testParse('parser-module/help/dummy_help-no_start');
