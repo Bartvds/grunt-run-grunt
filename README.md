@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Bartvds/grunt-run-grunt.svg?branch=master)](http://travis-ci.org/Bartvds/grunt-run-grunt)
 [![Coverage Status](https://coveralls.io/repos/github/Bartvds/grunt-run-grunt/badge.svg?branch=master)](https://coveralls.io/github/Bartvds/grunt-run-grunt?branch=master)
-[![Dependency Status](https://gemnasium.com/badges/github.com/Bartvds/grunt-run-grunt.svg)](https://gemnasium.com/github.com/Bartvds/grunt-run-grunt)
+[![Dependency Status](https://david-dm.org/Bartvds/grunt-run-grunt.svg)](https://david-dm.org/Bartvds/grunt-run-grunt.svg)
 [![npm version](https://badge.fury.io/js/grunt-run-grunt.svg)](http://badge.fury.io/js/grunt-run-grunt)
 
 
