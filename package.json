@@ -1,7 +1,7 @@
 {
   "name": "grunt-run-grunt",
   "description": "Grunt task to run Gruntfiles in a child process. Gruntception!",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "tasks/run_grunt.js",
   "engines": {
     "node": ">= 4",
