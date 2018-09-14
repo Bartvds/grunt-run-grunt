@@ -6,9 +6,11 @@
 
 'use strict';
 
-const lib = require('./../lib/lib');
+const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
 const Async = require('async');
+const lib = require('./../lib/lib');
 const runGruntfile = require('./../lib/runGruntfile').runGruntfile;
 
 // with flag type
@@ -42,7 +44,8 @@ const baseOptions = {
   expectFail: false,
   parser: null,
   env: {},
-  gruntOptions: {}
+  gruntOptions: {},
+  gruntCli: null
 };
 
 module.exports = function (grunt) {
@@ -98,6 +101,12 @@ module.exports = function (grunt) {
       grunt.fail.warn('expected at most ' + lib.pluralise(options.maximumFiles, 'gruntfile') + ' but ' + ('found ' + files.length).red);
       done();
       return;
+    }
+
+    if (_.isUndefined(options.gruntCli) || _.isNull(options.gruntCli)) {
+      // find local installed grunt-cli
+      const localGruntCli = path.resolve('./node_modules/.bin/grunt');
+      options.gruntCli = fs.existsSync(localGruntCli) ? localGruntCli : 'grunt';
     }
 
     // loop gruntfiles

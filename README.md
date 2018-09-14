@@ -133,6 +133,9 @@ expectFail: false
 // pass options that will be available in the executed gruntfile with grunt.option('myOption')
 // NOTE: will overwrite cli options with the same name!
 gruntOptions: {}
+
+// specifty a custom path to grunt cli
+gruntCli: null
 ```
 
 #### Process result object
@@ -187,24 +190,6 @@ See the [CHANGELOG](/CHANGELOG).
 ## Contributing
 
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-
-## Development
-
-### Requirements
-
-  - [RVM](https://rvm.io/)  
-  - [Vagrant](https://www.vagrantup.com/)  
-  - [Bundler](http://bundler.io/)  
-  - [Vagrant Omnibus](https://github.com/chef/vagrant-omnibus)  
-
-There is a Vagrantfile and set of Chef cookbooks to use with Vagrant for easy testing on a Linux VM. It will install a node.js from [nvm](https://github.com/creationix/nvm), install the dependencies and enable grunt.  
-
-```
-$ bundle install
-$ librarian-chef install
-$ vagrant up
-```
 
 
 ## License

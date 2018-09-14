@@ -66,7 +66,8 @@ module.exports = function (grunt) {
           // writeShell: 'test/shell/',
 
           // keep this updated
-          minimumFiles: 6
+          minimumFiles: 6,
+          maximumFiles: 12,
         },
         src: ['test/Gruntfile*.js']
       },
@@ -81,6 +82,9 @@ module.exports = function (grunt) {
       },
       parser: {
         src: ['test/Gruntfile-parser.js']
+      },
+      gruntCli: {
+        src: ['test/Gruntfile-gruntCli.js']
       }
     }
   });
@@ -96,5 +100,6 @@ module.exports = function (grunt) {
   grunt.registerTask('edit_02', ['prep', 'run_grunt:process']);
   grunt.registerTask('edit_03', ['prep', 'run_grunt:help']);
   grunt.registerTask('edit_04', ['prep', 'run_grunt:parser', 'mochaTest:parser_module']);
+  grunt.registerTask('edit_05', ['prep', 'run_grunt:gruntCli']);
 
 };
