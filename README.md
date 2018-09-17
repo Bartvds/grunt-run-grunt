@@ -2,8 +2,8 @@
 
 [![Build Status](https://travis-ci.org/Bartvds/grunt-run-grunt.svg?branch=master)](http://travis-ci.org/Bartvds/grunt-run-grunt)
 [![Coverage Status](https://coveralls.io/repos/github/Bartvds/grunt-run-grunt/badge.svg?branch=master)](https://coveralls.io/github/Bartvds/grunt-run-grunt?branch=master)
-[![Dependency Status](https://david-dm.org/Bartvds/grunt-run-grunt.svg)](https://david-dm.org/Bartvds/grunt-run-grunt.svg)
-[![npm version](https://img.shields.io/npm/v/grunt-run-grunt.svg)](https://img.shields.io/npm/v/grunt-run-grunt.svg)
+[![Dependency Status](https://david-dm.org/Bartvds/grunt-run-grunt.svg)](https://david-dm.org/Bartvds/grunt-run-grunt)
+[![npm version](https://img.shields.io/npm/v/grunt-run-grunt.svg)](https://www.npmjs.com/package/grunt-run-grunt)
 
 
 > Grunt task to run Gruntfiles in a child process. Gruntception!
